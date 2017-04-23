@@ -54,7 +54,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DynaSlack\DynAsana.csproj">
+    <ProjectReference Include="..\DynAsana\DynAsana.csproj">
       <Project>{1a8ff892-e81a-4261-aaa0-43713d980c26}</Project>
       <Name>DynAsana</Name>
     </ProjectReference>

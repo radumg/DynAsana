@@ -99,6 +99,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Asana\Classes\Payload.cs" />
+    <Compile Include="Asana\Client\Response.cs" />
+    <Compile Include="Asana\Classes\Webhook.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -110,8 +113,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Web\Helpers.cs" />
-    <Compile Include="Asana\SlackClasses.cs" />
-    <Compile Include="Asana\SlackClient.cs" />
+    <Compile Include="Asana\Classes\Task.cs" />
+    <Compile Include="Asana\Client\AsanaClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
