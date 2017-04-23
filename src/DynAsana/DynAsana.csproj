@@ -99,6 +99,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Asana\Classes\TaskForDeserialization.cs" />
     <Compile Include="Asana\Classes\Payload.cs" />
     <Compile Include="Asana\Client\Response.cs" />
     <Compile Include="Asana\Classes\Webhook.cs" />
