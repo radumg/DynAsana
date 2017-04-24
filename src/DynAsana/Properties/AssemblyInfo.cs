@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Dynamo to Slack integration")]
-[assembly: AssemblyDescription("Post messages to Slack from Dynamo using webhooks or bots.")]
+[assembly: AssemblyTitle("Dynamo to Asana integration")]
+[assembly: AssemblyDescription("Connect Dynamo to Asana, allowing creation and retrieval of tasks.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Radu Gidei")]
-[assembly: AssemblyProduct("Dynamo to Slack integration")]
+[assembly: AssemblyProduct("Dynamo to Asana integration")]
 [assembly: AssemblyCopyright("Copyright 2017 © Radu Gidei")]
 [assembly: AssemblyTrademark("Copyright 2017 © Radu Gidei")]
 [assembly: AssemblyCulture("")]
@@ -33,7 +33,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2017.1.3.6")]
-[assembly: AssemblyFileVersion("2017.1.3.6")]
+[assembly: AssemblyVersion("2017.1.1.0")]
+[assembly: AssemblyFileVersion("2017.1.1.0")]
 [assembly: NeutralResourcesLanguage("en-GB")]
 

@@ -22,12 +22,6 @@ namespace DynaSlack.Asana.Classes
         public string access_token { get; set; }
         public string scope { get; set; }
 
-        // bots
-        Bot bot;
-
-        // incoming webhook
-        public Webhook incoming_webhook;
-
         // user info
         public string url { get; set; }
         public string team { get; set; }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DynaSlack.Properties {
+namespace Asana.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

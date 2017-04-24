@@ -31,7 +31,7 @@
     <ProjectGuid>{1A8FF892-E81A-4261-AAA0-43713D980C26}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DynaSlack</RootNamespace>
+    <RootNamespace>Asana</RootNamespace>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -62,6 +62,7 @@
     <StartAction>Program</StartAction>
     <StartProgram>$(ProgramW6432)\Autodesk\Revit Copernicus\Revit.exe</StartProgram>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Release\Asana.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\slack.ico</ApplicationIcon>
@@ -74,7 +75,7 @@
     </StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyName>DynaSlack</AssemblyName>
+    <AssemblyName>Asana</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoServices, Version=1.2.0.2690, Culture=neutral, processorArchitecture=MSIL">
@@ -99,8 +100,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asana\Classes\TaskForDeserialization.cs" />
-    <Compile Include="Asana\Classes\Payload.cs" />
+    <Compile Include="Asana\Classes\Classes.cs" />
+    <Compile Include="Asana\Classes\HelperClasses.cs" />
     <Compile Include="Asana\Client\Response.cs" />
     <Compile Include="Asana\Classes\Webhook.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -149,6 +150,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Asana\Requests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterClean">

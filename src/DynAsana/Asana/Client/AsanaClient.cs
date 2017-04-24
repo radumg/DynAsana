@@ -1,45 +1,70 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RestSharp;
+using System;
+using System.Net;
 
-namespace Slack
+namespace Asana
 {
     /// <summary>
-    /// Slack clients represent a single connection to a Slack team, with all associated properties and methods.
+    /// Asana clients represent a single connection to an Asana organisation, with all associated properties and methods.
     /// </summary>
     public class Client
     {
-        // OAuth properties, read-only so they can only be supplied at creation time
-        private string token { get; }
-        public string team { get; set; }
-
-        // Webhooks and Bots are client-specific, so you could have different clients with different settings.
-        public Webhook webhook { get; set; }
-        Bot bot { get; set; }
+        public readonly string BaseUrl = "https://app.asana.com/api/1.0/";
+        public readonly string Token = "Bearer 0/7e47c745e9546e47b4f677926649db7d";
 
         /// <summary>
-        /// Slack client constructor
+        /// Asana client constructor
         /// </summary>
-        /// <param name="token">Optional OAuth token. If not supplied or invalid, posting will only be available as bots or webhooks.</param>
-        /// <param name="webhook">Optional webhook override. If supplied, this will be used instead of OAuth webhook.</param>
-        public Client(string token = null, Webhook webhook=null)
+        /// <param name="token">OAuth token, must be valid.</param>
+        public Client(string token = null)
         {
-            if (!CheckToken(token)) this.token = null;
-            else
-            {
-                this.token = token;
-                // TODO : implement Slack's /api/check/ endpoint to test token is actually valid
-            }
-            // check if there is an override on the webhook
-            if (webhook != null) this.webhook = webhook;
+
+            if (CheckToken(token)==false) this.Token = "Bearer 0/7e47c745e9546e47b4f677926649db7d";
+            if (TestConnection().StatusCode != System.Net.HttpStatusCode.OK) throw new InvalidOperationException("Could not establish connection to Asana.");
+        }
+
+        public Task GetTask(string taskId)
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            var client = new RestClient();
+            client.BaseUrl = new System.Uri(this.BaseUrl);
+
+            var request = new RestRequest();
+            request.AddParameter("Authorization", this.Token, ParameterType.HttpHeader);
+            //string opts = "?opt_fields=id,completed,due_on,name";
+            request.Resource = "tasks/" + taskId;
+
+            var response = client.Execute(request);
+            JObject o = JObject.Parse(response.Content);
+            JToken taskData = o.SelectToken("$.data");
+
+            // deserialise
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            return JsonConvert.DeserializeObject<Asana.Task>(taskData.ToString(),settings);
         }
 
         /// <summary>
-        /// Post a message using the client webhook
+        /// Test the connection to Asana by querying the API for the current user's data.
         /// </summary>
-        /// <param name="text">The text to send</param>
-        /// <returns>The message JSON payload</returns>
-        public string PostWebhookMessage(string text, string emoji = null)
+        /// <returns></returns>
+        public IRestResponse TestConnection()
         {
-            return this.webhook.Post(text);
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            var client = new RestClient();
+            client.BaseUrl = new System.Uri(BaseUrl);
+
+            var request = new RestRequest();
+            request.Resource = "users/me";
+            request.AddParameter("Authorization", this.Token, ParameterType.HttpHeader);
+
+            var response = client.Execute(request);
+            Console.WriteLine("Testing new client returned : " + response.StatusCode.ToString());
+            return response;
         }
 
         /// <summary>
@@ -51,7 +76,6 @@ namespace Slack
         {
             if (String.IsNullOrEmpty(token) || string.IsNullOrWhiteSpace(token)) return false;
 
-            // TODO : implement Slack's /api/check/ endpoint to test token is actually valid
             return true;
         }
     }

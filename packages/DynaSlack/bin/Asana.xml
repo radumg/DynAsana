@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Asana</name>
+    </assembly>
+    <members>
+        <member name="T:Asana.User">
+            <summary>
+            The below classes represent Asana entities.
+            </summary>
+        </member>
+        <member name="T:Asana.Webhook">
+            <summary>
+            Class represents an Incoming Webhook connection in Slack
+            </summary>
+        </member>
+        <member name="M:Asana.Webhook.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Create a webhook for use with Slack.
+            </summary>
+            <param name="Url">The URL to send data to</param>
+            <param name="Channel">The Slack channel to post to, defaults to #general</param>
+            <param name="User">The name of the user to post as</param>
+            <param name="EmojiIcon">The emoji to use as icon. Uses Slack syntax, like :ghost: or :rocket:</param>
+            <param name="UrlIcon">An URL to an image to use as the icon.</param>
+        </member>
+        <member name="M:Asana.Webhook.CreateTask(System.String,System.String)">
+            <summary>
+            Post a message using webhooks
+            </summary>
+            <param name="webhook">Specify a webhook object to use. If nothing is supplied, it defaults to the Client's webhook.</param>
+            <param name="name">The text to send</param>
+            <returns>The message JSON payload</returns>
+        </member>
+        <member name="T:Asana.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Asana.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Asana.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Asana.Properties.Resources.add_to_slack">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Asana.Properties.Resources.slack">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="T:Asana.Task">
+            <summary>
+            Class represents an Asana task.
+            See API structure at https://asana.com/developers/api-reference/tasks
+            </summary>
+        </member>
+        <member name="M:Asana.Task.#ctor(System.String,System.String)">
+            <summary>
+            Create an Asana task
+            </summary>
+            <param name="name">The name of the task.</param>
+            <param name="description">The description of the task.</param>
+        </member>
+        <member name="M:Asana.Task.ToJSON">
+            <summary>
+            Serializes the Slack message to JSON
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Asana.Client">
+            <summary>
+            Asana clients represent a single connection to an Asana organisation, with all associated properties and methods.
+            </summary>
+        </member>
+        <member name="M:Asana.Client.#ctor(System.String)">
+            <summary>
+            Asana client constructor
+            </summary>
+            <param name="token">OAuth token, must be valid.</param>
+        </member>
+        <member name="M:Asana.Client.TestConnection">
+            <summary>
+            Test the connection to Asana by querying the API for the current user's data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Asana.Client.CheckToken(System.String)">
+            <summary>
+            Checks whether an OAuth token is valid
+            </summary>
+            <param name="token">The token to check</param>
+            <returns>True if token is valid and false otherwise</returns>
+        </member>
+        <member name="T:DynaSlack.Asana.Classes.Response">
+            <summary>
+            Class that Slack's web responses deserialize to
+            </summary>
+        </member>
+        <member name="T:Web.Request">
+            <summary>
+            Utility class used to construct a web request and send it
+            </summary>
+        </member>
+        <member name="M:Web.Request.POST(System.String,System.String)">
+            <summary>
+            Utility function to send a POST request to a URL using a "payload" request parameter
+            </summary>
+            <param name="url">The string URL to send request to</param>
+            <param name="jsonPayload">The POST data to send in JSON format</param>
+            <returns>The server response as a string</returns>
+        </member>
+        <member name="T:Web.Helpers">
+            <summary>
+            Utility functions that are used for validation and other auxiliary tasks
+            </summary>
+        </member>
+        <member name="M:Web.Helpers.checkURI(System.Uri)">
+            <summary>Check the URI is valid</summary>
+            <param name="uriToCheck">The URI to check</param>
+            <returns>True if is valid, False otherwise</returns>
+        </member>
+    </members>
+</doc>

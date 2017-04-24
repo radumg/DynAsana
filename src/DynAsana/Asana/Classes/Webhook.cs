@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DynaSlack.Asana.Classes
+namespace Asana
 {
     /// <summary>
     /// Class represents an Incoming Webhook connection in Slack
@@ -48,35 +48,31 @@ namespace DynaSlack.Asana.Classes
         /// Post a message using webhooks
         /// </summary>
         /// <param name="webhook">Specify a webhook object to use. If nothing is supplied, it defaults to the Client's webhook.</param>
-        /// <param name="text">The text to send</param>
+        /// <param name="name">The text to send</param>
         /// <returns>The message JSON payload</returns>
-        public string Post(string text)
+        public string CreateTask(string name, string description)
         {
-            // TODO : implement & refactor using webhook posting factory
             // perform checks before encoding objects
-            if (String.IsNullOrEmpty(text)) throw new Exception("Message text cannot be empty!");
+            if (String.IsNullOrEmpty(name)) throw new Exception("Name of task cannot be empty!");
 
             // build payload
-            SlackPayload payload = new SlackPayload();
-            payload.Channel = this.channel;
-            payload.Username = this.username;
-            payload.Text = text;
-            payload.Emoji = this.icon_emoji;
-            payload.Icon = this.icon_url;
+            Asana.Task payload = new Asana.Task(name, description);
+                /* set additional properties here
+            payload.Workspace = "";
+            payload.Project = "";
+            */
 
             // encode payload as JSON and POST it
-            string jsonPayload = JsonConvert.SerializeObject(payload);
+            string jsonPayload = payload.ToJSON();
             string response = Web.Request.POST(this.url, jsonPayload);
 
             // validate response
-            if (String.IsNullOrEmpty(response)) throw new Exception("Slack servers returned an error.");
-            if (response.Trim().Contains("<html")) throw new Exception("Slack could not process the request : please check the webhook URL.");
+            if (String.IsNullOrEmpty(response)) throw new Exception("Asana servers returned an error.");
 
             // POST the message and return the server response
             return response;
 
-            // TODO : deserialise server response to the SlackResponse class instead of returning string
-            // var serialiser = new Newtonsoft.Json.JsonSerializer();
+            // TODO : deserialise server response to the right Asana class instead of returning string
         }
 
     }
