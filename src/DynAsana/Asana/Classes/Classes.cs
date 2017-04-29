@@ -13,13 +13,13 @@ namespace Asana
     public class User
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("email")]
-        public string email { get; set; }
+        public string Email { get; set; }
 
         [JsonProperty("photo")]
         public Photo Photos { get; set; }
@@ -31,7 +31,7 @@ namespace Asana
 
     public class CustomFieldValue
     {
-        public long id { get; set; }
+        public string id { get; set; }
         public bool enabled { get; set; }
         public string name { get; set; }
     }
@@ -39,7 +39,7 @@ namespace Asana
     public class CustomField
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("enum_value")]
         public CustomFieldValue Value { get; set; }
@@ -54,7 +54,7 @@ namespace Asana
     public class Follower
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -63,7 +63,7 @@ namespace Asana
     public class Project
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -72,7 +72,7 @@ namespace Asana
     public class Section
     {
         [JsonProperty("id")]
-        public long id { get; set; }
+        public string id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -90,15 +90,18 @@ namespace Asana
     public class Workspace
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("is_organization")]
+        public bool IsOrganisation { get; set; }
     }
 
     public class Tag
     {
-        public long id { get; set; }
+        public string id { get; set; }
         public string color { get; set; }
         public string created_at { get; set; }
         public List<Follower> followers { get; set; }
@@ -109,7 +112,8 @@ namespace Asana
 
     public class Heart
     {
-        public long id { get; set; }
+        public string id { get; set; }
         public User user { get; set; }
     }
+
 }

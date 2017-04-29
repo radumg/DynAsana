@@ -102,7 +102,13 @@
   <ItemGroup>
     <Compile Include="Asana\Classes\Classes.cs" />
     <Compile Include="Asana\Classes\HelperClasses.cs" />
-    <Compile Include="Asana\Client\Response.cs" />
+    <Compile Include="Asana\Classes\PostClasses.cs" />
+    <Compile Include="Asana\Client\GET.cs" />
+    <Compile Include="Asana\Client\POST.cs" />
+    <Compile Include="Asana\Client\DELETE.cs" />
+    <Compile Include="Asana\Client\PUT.cs" />
+    <Compile Include="Asana\Requests\AsanaRequest.cs" />
+    <Compile Include="Asana\Requests\AsanaResponse.cs" />
     <Compile Include="Asana\Classes\Webhook.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -149,9 +155,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Asana\Requests\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterClean">
     <!-- Remove build folders -->

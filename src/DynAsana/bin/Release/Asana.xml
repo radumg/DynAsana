@@ -9,6 +9,104 @@
             The below classes represent Asana entities.
             </summary>
         </member>
+        <member name="T:Asana.Client">
+            <summary>
+            Asana clients represent a single connection to an Asana organisation, with all associated properties and methods.
+            </summary>
+        </member>
+        <member name="M:Asana.Client.GetTask(System.String)">
+            <summary>
+            Get a specific Asana task.
+            </summary>
+            <param name="taskId">The ID of the task to retrieve.</param>
+            <returns>The requested Asana task.</returns>
+        </member>
+        <member name="M:Asana.Client.GetWorkspaceTasks(System.String)">
+            <summary>
+            Gets all tasks in a specific workspace.
+            </summary>
+            <param name="workspaceId">The workspace whose tasks to retrieve.</param>
+            <returns>A list of all the tasks in the supplied workspace.</returns>
+        </member>
+        <member name="M:Asana.Client.GetCurrentUser">
+            <summary>
+            Get the details for the current Asana user, usually the owner of the token used.
+            </summary>
+            <returns>The Asana current user.</returns>
+        </member>
+        <member name="M:Asana.Client.GetUser(System.String)">
+            <summary>
+            Get the details of a specific Asana user.
+            </summary>
+            <param name="userId">The identifying user id.</param>
+            <returns>The requested Asana user.</returns>
+        </member>
+        <member name="M:Asana.Client.CreateTask(Asana.Task)">
+            <summary>
+            Create an Asana task by uploading an Asana Task object.
+            </summary>
+            <param name="task">The task to upload.</param>
+            <returns>The createad task.</returns>
+        </member>
+        <member name="M:Asana.Client.#ctor(System.String)">
+            <summary>
+            Asana client constructor
+            </summary>
+            <param name="token">OAuth token, must be valid.</param>
+        </member>
+        <member name="M:Asana.Client.Execute``1(Asana.AsanaRequest)">
+            <summary>
+            Executes an Asana Request
+            </summary>
+            <typeparam name="T">The Asana object type to deserialize as.</typeparam>
+            <param name="request">The Asana Request to execute.</param>
+            <returns>Response from Asana API deserialized as the supplied type.</returns>
+        </member>
+        <member name="M:Asana.Client.Deserialize``1(RestSharp.IRestResponse,System.String)">
+            <summary>
+            Deserializes a response from the Asana API to the supplied object type.
+            </summary>
+            <typeparam name="T">The type to deserialize to.</typeparam>
+            <param name="response">The response from Asana API to deserialize.</param>
+            <param name="JsonToken">Optional : specify a JSON token as the root element to deserialise from.
+            Default for Asana is : "$.data"</param>
+            <returns>The supplied response from Asana API, deserialized as the supplied type.</returns>
+        </member>
+        <member name="M:Asana.Client.TestConnection">
+            <summary>
+            Test the connection to Asana by querying the API for the current user's data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Asana.Client.CheckToken(System.String)">
+            <summary>
+            Checks whether an OAuth token is valid
+            </summary>
+            <param name="token">The token to check</param>
+            <returns>True if token is valid and false otherwise</returns>
+        </member>
+        <member name="M:Asana.Client.CheckId(System.String)">
+            <summary>
+            Check if the supplied Id is valid. Note: does not guarantee Id is valid, only checks general format.
+            </summary>
+            <param name="Id">The id to check</param>
+            <returns>True if Id seems valid, false otherwise.</returns>
+        </member>
+        <member name="T:Asana.AsanaRequest">
+            <summary>
+            Represents any request to the Asana API. Inherits from the RestSharp RestRequest class.
+            </summary>
+        </member>
+        <member name="T:Asana.Error">
+            <summary>
+            Individual error message from Asana API.
+            </summary>
+        </member>
+        <member name="T:Asana.AsanaResponse">
+            <summary>
+            Response from the Asana API.
+            </summary>
+        </member>
         <member name="T:Asana.Webhook">
             <summary>
             Class represents an Incoming Webhook connection in Slack
@@ -71,40 +169,16 @@
             <param name="name">The name of the task.</param>
             <param name="description">The description of the task.</param>
         </member>
+        <member name="M:Asana.Task.#ctor">
+            <summary>
+            Parameterless Task constructor
+            </summary>
+        </member>
         <member name="M:Asana.Task.ToJSON">
             <summary>
             Serializes the Slack message to JSON
             </summary>
             <returns></returns>
-        </member>
-        <member name="T:Asana.Client">
-            <summary>
-            Asana clients represent a single connection to an Asana organisation, with all associated properties and methods.
-            </summary>
-        </member>
-        <member name="M:Asana.Client.#ctor(System.String)">
-            <summary>
-            Asana client constructor
-            </summary>
-            <param name="token">OAuth token, must be valid.</param>
-        </member>
-        <member name="M:Asana.Client.TestConnection">
-            <summary>
-            Test the connection to Asana by querying the API for the current user's data.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Asana.Client.CheckToken(System.String)">
-            <summary>
-            Checks whether an OAuth token is valid
-            </summary>
-            <param name="token">The token to check</param>
-            <returns>True if token is valid and false otherwise</returns>
-        </member>
-        <member name="T:DynaSlack.Asana.Classes.Response">
-            <summary>
-            Class that Slack's web responses deserialize to
-            </summary>
         </member>
         <member name="T:Web.Request">
             <summary>

@@ -52,10 +52,10 @@ namespace Asana
 
         #region Context
         [JsonProperty("workspace")]
-        public Asana.Workspace Workspace { get; private set; }
+        public Asana.Workspace Workspace { get; set; }
 
         [JsonProperty("projects")]
-        public List<Asana.Project> Projects { get; private set; }
+        public List<Asana.Project> Projects { get; set; }
 
         [JsonProperty("parent")]
         public Asana.Task Parent { get; set; }
@@ -84,13 +84,13 @@ namespace Asana
         #region Hearts
 
         [JsonProperty("hearted")]
-        public bool Hearted { get; set; }
+        public bool Hearted { get; private set; }
 
         [JsonProperty("hearts")]
-        public List<Asana.Heart> Hearts { get; set; }
+        public List<Asana.Heart> Hearts { get; private set; }
 
         [JsonProperty("num_hearts")]
-        public int NumberOfHearts { get; set; }
+        public int NumberOfHearts { get; private set; }
 
     #endregion
 
@@ -103,6 +103,25 @@ namespace Asana
         {
             if (!String.IsNullOrEmpty(name) && !String.IsNullOrWhiteSpace(name)) this.Name = name;
             if (!String.IsNullOrEmpty(description) && !String.IsNullOrWhiteSpace(description)) this.Name = name;
+        }
+
+        /// <summary>
+        /// Parameterless Task constructor
+        /// </summary>
+        public Task()
+        {
+        }
+
+        public void AddProject(Project proj)
+        {
+            if(this.Projects==null) this.Projects = new List<Project>();
+            if (proj!=null) this.Projects.Add(proj);
+        }
+
+        public void AddTag(Tag tag)
+        {
+            if (this.Tags == null) this.Tags = new List<Tag>();
+            if (tag != null) this.Tags.Add(tag);
         }
 
         /// <summary>
