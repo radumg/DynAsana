@@ -24,10 +24,14 @@ namespace Asana
             if (task.Workspace == null) throw new ArgumentException("Must specify a workspace when creating a task.");
             if (Classes.CheckId(task.Workspace.Id) == false) throw new ArgumentException("Invalid workspace id.");
 
-            var request = new AsanaRequest(this, Method.POST, "workspaces/" + task.Workspace.Id + "/tasks/");
+            var request = new AsanaRequest(this, Method.POST, "tasks/");
 
+            var projects = new List<string>();
+            task.Projects.ForEach(p => projects.Add(p.Id));
+
+            request.restRequest.AddParameter("workspaces", task.Workspace.Id, ParameterType.GetOrPost);
             request.restRequest.AddParameter("name", task.Name, ParameterType.GetOrPost);
-            request.restRequest.AddParameter("projects", task.Projects.First().Id, ParameterType.GetOrPost);
+            request.restRequest.AddParameter("projects", projects.ToArray(), ParameterType.GetOrPost);
             request.restRequest.AddParameter("notes", task.Notes, ParameterType.GetOrPost);
             request.restRequest.AddParameter("assignee", task.Assignee.Id, ParameterType.GetOrPost);
             request.restRequest.AddParameter("tags", task.Tags.First().Id, ParameterType.GetOrPost);

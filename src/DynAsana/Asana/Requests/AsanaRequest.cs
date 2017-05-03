@@ -17,9 +17,9 @@ namespace Asana
     /// </summary>
     public class AsanaRequest
     {
-        internal TimeSpan runtime { get; private set; }
+        public TimeSpan TimeToComplete { get; private set; }
         internal RestRequest restRequest { get; private set; }
-        public Asana.AsanaResponse errorResponse;
+        public AsanaErrorResponse errorResponse;
 
         public AsanaRequest(Asana.Client client, Method method, string resource = null)
         {
@@ -44,18 +44,11 @@ namespace Asana
         /// <returns>Response from Asana API deserialized as the supplied type.</returns>
         internal T Execute<T>(Asana.Client client) where T : new()
         {
-            //try
-            //{
-                var startTime = DateTime.Now;
-                var response = client.restClient.Execute(this.restRequest);
-                this.runtime = DateTime.Now - startTime;
-                Console.WriteLine("Request took " + runtime.TotalMilliseconds.ToString() + "ms");
-                return Deserialize<T>(response, client.JsonTokenOverride);
-            //}
-            //catch (Exception e)
-            //{
-            //    throw new ApplicationException(e.Message);
-            //}
+            var startTime = DateTime.Now;
+            var response = client.restClient.Execute(this.restRequest);
+            this.TimeToComplete = DateTime.Now - startTime;
+            Console.WriteLine("Request took " + TimeToComplete.TotalMilliseconds.ToString() + "ms");
+            return Deserialize<T>(response, client.JsonTokenOverride);
         }
 
         /// <summary>
@@ -71,9 +64,9 @@ namespace Asana
             /// We first need to check there is something to serialise.
             /// If Asana didn't return a success code, we parse the error message instead of deserialising.
             /// Successful web response codes are in the 100 and 200 series. Larger numbers indicate warnings or errors.
-            if (Helpers.Web.ServerReturnedSuccessfulResponse(response)==false)
+            if (Helpers.Web.ServerReturnedSuccessfulResponse(response) == false)
             {
-                this.errorResponse = JsonConvert.DeserializeObject<AsanaResponse>(response.Content);
+                this.errorResponse = JsonConvert.DeserializeObject<AsanaErrorResponse>(response.Content);
 
                 /// The Asana API is capable of returning multiple errors
                 /// We need to parse each one and record its error message.

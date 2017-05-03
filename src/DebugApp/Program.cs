@@ -61,8 +61,10 @@ namespace Asana
         {
             var uploadTask = new Task();
             var proj = new Project() { Id = "200419949000730", Name = "software dev" };
+            var proj2 = new Project() { Id = "325561650959818", Name = "bim general" };
             var projList = new List<Project>();
             projList.Add(proj);
+            projList.Add(proj2);
             uploadTask.Projects = projList;
             uploadTask.Workspace = new Workspace() { Id = "198488041683503" };
             uploadTask.Assignee = new User() { Id = "198487209472854" };

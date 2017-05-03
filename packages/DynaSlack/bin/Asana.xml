@@ -128,14 +128,14 @@
             Default for Asana is : "$.data"</param>
             <returns>The supplied response from Asana API, deserialized as the supplied type.</returns>
         </member>
-        <member name="T:Asana.Error">
+        <member name="T:Asana.AsanaError">
             <summary>
             Individual error message from Asana API.
             </summary>
         </member>
-        <member name="T:Asana.AsanaResponse">
+        <member name="T:Asana.AsanaErrorResponse">
             <summary>
-            Response from the Asana API.
+            Response from the Asana API detailing the errors that occured.
             </summary>
         </member>
         <member name="T:Asana.Properties.Resources">
