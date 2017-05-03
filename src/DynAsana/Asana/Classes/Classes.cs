@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Asana.Helpers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -115,7 +116,7 @@ namespace Asana
 
         public Follower(string id)
         {
-            if (Client.CheckId(id)) this.Id = id;
+            if (Classes.CheckId(id)) this.Id = id;
         }
     }
 
@@ -134,7 +135,7 @@ namespace Asana
 
         public Project(string id)
         {
-            if (Client.CheckId(id)) this.Id = id;
+            if (Classes.CheckId(id)) this.Id = id;
         }
     }
 
@@ -153,7 +154,7 @@ namespace Asana
 
         public Section(string id)
         {
-            if (Client.CheckId(id)) this.Id = id;
+            if (Classes.CheckId(id)) this.Id = id;
         }
     }
 
@@ -183,7 +184,7 @@ namespace Asana
 
         public Workspace(string id)
         {
-            if (Client.CheckId(id)) this.Id = id;
+            if (Classes.CheckId(id)) this.Id = id;
         }
     }
 
@@ -222,8 +223,11 @@ namespace Asana
 
     public class Heart
     {
-        public string id { get; set; }
-        public User user { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("user")]
+        public User User { get; set; }
 
         public Heart()
         {
@@ -232,7 +236,7 @@ namespace Asana
 
         public Heart(string id)
         {
-            if (Client.CheckId(id)) this.Id = id;
+            if (Classes.CheckId(id)) this.Id = id;
         }
     }
 

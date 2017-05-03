@@ -39,7 +39,7 @@ namespace Asana
             this.restClient = new RestClient();
             this.restClient.BaseUrl = new System.Uri(this.BaseUrl);
             this.restClient.UserAgent = "DynAsana (github.com/radumg/DynAsana)";
-            this.restClient.Timeout = 10000;
+            this.restClient.Timeout = 15000;
 
             if (TestConnection().StatusCode != HttpStatusCode.OK) throw new InvalidOperationException("Could not establish connection to Asana.");
         }

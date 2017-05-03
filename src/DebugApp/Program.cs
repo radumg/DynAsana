@@ -30,15 +30,12 @@ namespace Asana
             Console.WriteLine("Id   : " + user.Email);
             Console.Write("Workspaces : "); user.Workspaces.ForEach(w => Console.Write(w.Name + ", "));
             Console.WriteLine();
+            Console.WriteLine();
 
             // GET a task from Asana
             Console.WriteLine("GET a task from Asana =============");
             var task = asanaClient.GetTask("314317576360056");
-            //Dump(task);
-            Console.WriteLine();
-
             // Access deserialised properties
-            Console.WriteLine("Deserialised task =================");
             Console.WriteLine("Id   : " + task.Id);
             Console.WriteLine("Name : " + task.Name);
             Console.Write("Tags : "); task.Tags.ForEach(t => Console.Write(t.Name + ", "));

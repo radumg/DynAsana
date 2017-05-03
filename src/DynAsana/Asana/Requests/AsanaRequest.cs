@@ -71,7 +71,7 @@ namespace Asana
             /// We first need to check there is something to serialise.
             /// If Asana didn't return a success code, we parse the error message instead of deserialising.
             /// Successful web response codes are in the 100 and 200 series. Larger numbers indicate warnings or errors.
-            if (Asana.Helpers.ServerReturnedSuccessfulResponse(response)==false)
+            if (Helpers.Web.ServerReturnedSuccessfulResponse(response)==false)
             {
                 this.errorResponse = JsonConvert.DeserializeObject<AsanaResponse>(response.Content);
 
@@ -83,13 +83,14 @@ namespace Asana
                     if (error != null && !String.IsNullOrEmpty(error.Message))
                         errorMessage += "Error :" + error.Message + Environment.NewLine;
                 }
-
+                Console.WriteLine(errorMessage);
                 throw new InvalidOperationException(errorMessage);
             }
 
             /// Because Asana wraps all responses in a "data{}" object in JSON,
             /// we then need to check if the client has a Json token override.
             /// Specifying this at client level will allow simultaneous usage of different Asana API versions should this change.
+            /// This could be achieved with RestSharps's Request.RootElement but i've not had consistent results with that.
             string taskData = "";
             if (String.IsNullOrEmpty(JsonToken) == false)
             {

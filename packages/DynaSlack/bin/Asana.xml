@@ -9,6 +9,30 @@
             The below classes represent Asana entities.
             </summary>
         </member>
+        <member name="M:Asana.Helpers.Classes.CheckFieldValue(System.String)">
+            <summary>
+            Checks whether a field is a valid string
+            </summary>
+            <param name="value">The value to check</param>
+            <returns>True if the value is not null or emptym false otherwise.</returns>
+        </member>
+        <member name="M:Asana.Helpers.Classes.CheckId(System.String)">
+            <summary>
+            Check if the supplied Id is valid. Note: does not guarantee Id is valid, only checks general format.
+            </summary>
+            <param name="Id">The id to check</param>
+            <returns>True if Id seems valid, false otherwise.</returns>
+        </member>
+        <member name="T:Asana.Helpers.Web">
+            <summary>
+            Utility functions that are used for validation and other auxiliary tasks
+            </summary>
+        </member>
+        <member name="M:Asana.Helpers.Web.CheckURI(System.Uri)">
+            <summary>Check the URI is valid</summary>
+            <param name="uriToCheck">The URI to check</param>
+            <returns>True if is valid, False otherwise</returns>
+        </member>
         <member name="T:Asana.Client">
             <summary>
             Asana clients represent a single connection to an Asana organisation, with all associated properties and methods.
@@ -81,13 +105,6 @@
             <param name="token">The token to check</param>
             <returns>True if token is valid and false otherwise</returns>
         </member>
-        <member name="M:Asana.Client.CheckId(System.String)">
-            <summary>
-            Check if the supplied Id is valid. Note: does not guarantee Id is valid, only checks general format.
-            </summary>
-            <param name="Id">The id to check</param>
-            <returns>True if Id seems valid, false otherwise.</returns>
-        </member>
         <member name="T:Asana.AsanaRequest">
             <summary>
             Represents any request to the Asana API. Inherits from the RestSharp RestRequest class.
@@ -146,16 +163,6 @@
             <summary>
               Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>
-        </member>
-        <member name="T:Asana.Helpers">
-            <summary>
-            Utility functions that are used for validation and other auxiliary tasks
-            </summary>
-        </member>
-        <member name="M:Asana.Helpers.CheckURI(System.Uri)">
-            <summary>Check the URI is valid</summary>
-            <param name="uriToCheck">The URI to check</param>
-            <returns>True if is valid, False otherwise</returns>
         </member>
         <member name="T:Asana.Task">
             <summary>

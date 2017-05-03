@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft;
 using Asana;
 using RestSharp;
+using Asana.Helpers;
 
 /// <summary>
 /// Namespace holds classes that are used to represent Asana entities
