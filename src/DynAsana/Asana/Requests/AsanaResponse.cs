@@ -10,7 +10,7 @@ namespace Asana
     /// <summary>
     /// Individual error message from Asana API.
     /// </summary>
-    internal class Error
+    internal class AsanaError
     {
         [JsonProperty("message")]
         public string Message { get; set; }
@@ -20,11 +20,11 @@ namespace Asana
     }
 
     /// <summary>
-    /// Response from the Asana API.
+    /// Response from the Asana API detailing the errors that occured.
     /// </summary>
-    public class AsanaResponse
+    public class AsanaErrorResponse
     {
         [JsonProperty("errors")]
-        internal List<Error> Errors { get; set; }
+        internal List<AsanaError> Errors { get; set; }
     }
 }

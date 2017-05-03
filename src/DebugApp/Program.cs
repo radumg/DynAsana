@@ -30,15 +30,12 @@ namespace Asana
             Console.WriteLine("Id   : " + user.Email);
             Console.Write("Workspaces : "); user.Workspaces.ForEach(w => Console.Write(w.Name + ", "));
             Console.WriteLine();
+            Console.WriteLine();
 
             // GET a task from Asana
             Console.WriteLine("GET a task from Asana =============");
             var task = asanaClient.GetTask("314317576360056");
-            //Dump(task);
-            Console.WriteLine();
-
             // Access deserialised properties
-            Console.WriteLine("Deserialised task =================");
             Console.WriteLine("Id   : " + task.Id);
             Console.WriteLine("Name : " + task.Name);
             Console.Write("Tags : "); task.Tags.ForEach(t => Console.Write(t.Name + ", "));
@@ -52,7 +49,8 @@ namespace Asana
             var createdTask = asanaClient.CreateTask(nt);
             Console.WriteLine("Id   : " + createdTask.Id);
             Console.WriteLine("Name : " + createdTask.Name);
-            Console.Write("Tags : "); task.Tags.ForEach(t => Console.Write(t.Name + ", "));
+            Console.Write("Projects : "); createdTask.Projects.ForEach(p => Console.Write(p.Name + ", ")); Console.WriteLine();
+            Console.Write("Tags : "); createdTask.Tags.ForEach(t => Console.Write(t.Name + ", ")); Console.WriteLine();
             Console.WriteLine();
 
             // wait before closing the window
@@ -64,16 +62,22 @@ namespace Asana
         {
             var uploadTask = new Task();
             var proj = new Project() { Id = "200419949000730", Name = "software dev" };
+            var proj2 = new Project() { Id = "325561650959818", Name = "bim general" };
             var projList = new List<Project>();
             projList.Add(proj);
+            projList.Add(proj2);
             uploadTask.Projects = projList;
             uploadTask.Workspace = new Workspace() { Id = "198488041683503" };
             uploadTask.Assignee = new User() { Id = "198487209472854" };
             uploadTask.Name = "New task created at " + DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
-            uploadTask.Notes = "This is a task created from the API.";
-            var tag = new Tag() { Id = "204494482735923" };
+            uploadTask.Notes = "This is a task created from the API." + Environment.NewLine +
+                "It belongs to 2 separate projects (software dev & bim general)." + Environment.NewLine +
+                "It also has 2 tags (Dyn, Konrad)";
+            var tag = new Tag() { Id = "204494482735923", Name= "DYN" };
+            var tag2 = new Tag() { Id = "198900482693477", Name="Konrad" };
             var tagList = new List<Tag>();
             tagList.Add(tag);
+            tagList.Add(tag2);
             uploadTask.Tags = tagList;
             return uploadTask;
         }
