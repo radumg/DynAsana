@@ -49,7 +49,8 @@ namespace Asana
             var createdTask = asanaClient.CreateTask(nt);
             Console.WriteLine("Id   : " + createdTask.Id);
             Console.WriteLine("Name : " + createdTask.Name);
-            Console.Write("Tags : "); task.Tags.ForEach(t => Console.Write(t.Name + ", "));
+            Console.Write("Projects : "); createdTask.Projects.ForEach(p => Console.Write(p.Name + ", ")); Console.WriteLine();
+            Console.Write("Tags : "); createdTask.Tags.ForEach(t => Console.Write(t.Name + ", ")); Console.WriteLine();
             Console.WriteLine();
 
             // wait before closing the window
@@ -69,10 +70,14 @@ namespace Asana
             uploadTask.Workspace = new Workspace() { Id = "198488041683503" };
             uploadTask.Assignee = new User() { Id = "198487209472854" };
             uploadTask.Name = "New task created at " + DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
-            uploadTask.Notes = "This is a task created from the API.";
-            var tag = new Tag() { Id = "204494482735923" };
+            uploadTask.Notes = "This is a task created from the API." + Environment.NewLine +
+                "It belongs to 2 separate projects (software dev & bim general)." + Environment.NewLine +
+                "It also has 2 tags (Dyn, Konrad)";
+            var tag = new Tag() { Id = "204494482735923", Name= "DYN" };
+            var tag2 = new Tag() { Id = "198900482693477", Name="Konrad" };
             var tagList = new List<Tag>();
             tagList.Add(tag);
+            tagList.Add(tag2);
             uploadTask.Tags = tagList;
             return uploadTask;
         }

@@ -27,16 +27,13 @@ namespace Asana
             var request = new AsanaRequest(this, Method.POST, "tasks/");
 
             var projects = new List<string>();
-            task.Projects.ForEach(p => projects.Add(p.Id));
 
             request.restRequest.AddParameter("workspaces", task.Workspace.Id, ParameterType.GetOrPost);
             request.restRequest.AddParameter("name", task.Name, ParameterType.GetOrPost);
-            request.restRequest.AddParameter("projects", projects.ToArray(), ParameterType.GetOrPost);
+            task.Projects.ForEach(p => request.restRequest.AddParameter("projects", p.Id, ParameterType.GetOrPost));
             request.restRequest.AddParameter("notes", task.Notes, ParameterType.GetOrPost);
             request.restRequest.AddParameter("assignee", task.Assignee.Id, ParameterType.GetOrPost);
-            request.restRequest.AddParameter("tags", task.Tags.First().Id, ParameterType.GetOrPost);
-
-            Console.WriteLine(JObject.FromObject(request.restRequest).ToString());
+            task.Tags.ForEach(t => request.restRequest.AddParameter("tags", t.Id, ParameterType.GetOrPost));
 
             return request.Execute<Asana.Task>(this);
         }

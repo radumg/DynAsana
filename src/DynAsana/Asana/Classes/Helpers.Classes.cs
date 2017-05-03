@@ -25,7 +25,7 @@ namespace Asana.Helpers
         /// Checks whether a field is a valid string
         /// </summary>
         /// <param name="value">The value to check</param>
-        /// <returns>True if the value is not null or emptym false otherwise.</returns>
+        /// <returns>True if the value is not null/empty, false otherwise.</returns>
         internal static Boolean CheckFieldValue(string value)
         {
             if (String.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value)) return false;
