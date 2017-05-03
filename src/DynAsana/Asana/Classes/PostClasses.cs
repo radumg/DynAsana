@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Asana
 {
-    public class PostTask
+    internal class PostTask
     {
 
         [JsonProperty("assignee")]
@@ -27,7 +27,7 @@ namespace Asana
 
     }
 
-    public class PostObject
+    internal class PostObject
     {
         [JsonProperty("data")]
         public object data { get; set; }

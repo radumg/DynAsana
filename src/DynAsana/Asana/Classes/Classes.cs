@@ -27,13 +27,47 @@ namespace Asana
         [JsonProperty("workspaces")]
         public List<Workspace> Workspaces { get; set; }
 
+        public User()
+        {
+        }
+
+        public User(string id=null, string name=null, string email=null, List<Workspace> workspace =null)
+        {
+            if (Helpers.Classes.CheckId(id)) this.Id = id;
+            else this.Id = "";
+            if (Helpers.Classes.CheckFieldValue(name)) this.Name = name;
+            else this.Name = "";
+            if (Helpers.Classes.CheckFieldValue(email)) this.Email = email;
+            else this.Email = "";
+            if (workspace != null) this.Workspaces = workspace;
+            else this.Workspaces = new List<Workspace>();
+        }
     }
 
-    public class CustomFieldValue
+    internal class CustomFieldValue
     {
-        public string id { get; set; }
-        public bool enabled { get; set; }
-        public string name { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("enabled")]
+        public bool Enabled { get; set; }
+
+        [JsonProperty("name")]
+        public string Value { get; set; }
+
+        public CustomFieldValue()
+        {
+
+        }
+
+        public CustomFieldValue(string id=null, string value=null)
+        {
+            if (Helpers.Classes.CheckId(id)) this.Id = id;
+            else this.Id = "";
+
+            if (Helpers.Classes.CheckId(id)) this.Value = value;
+            else this.Value = "";
+        }
     }
 
     public class CustomField
@@ -42,13 +76,28 @@ namespace Asana
         public string Id { get; set; }
 
         [JsonProperty("enum_value")]
-        public CustomFieldValue Value { get; set; }
+        internal CustomFieldValue EnumValue { get; set; }
+
+        public string Value { get { return this.EnumValue.Value; } }
+        public bool Enabled { get { return this.EnumValue.Enabled; } }
 
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("type")]
         public string Type { get; set; }
+
+        public CustomField()
+        {
+
+        }
+
+        public CustomField(string id=null, string name = null, string value=null)
+        {
+            if (Helpers.Classes.CheckId(id)) this.Id = id;
+            else this.Id = "";
+            this.EnumValue = new CustomFieldValue("", value);
+        }
     }
 
     public class Follower
@@ -58,6 +107,16 @@ namespace Asana
 
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        public Follower()
+        {
+
+        }
+
+        public Follower(string id)
+        {
+            if (Client.CheckId(id)) this.Id = id;
+        }
     }
 
     public class Project
@@ -67,15 +126,35 @@ namespace Asana
 
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        public Project()
+        {
+
+        }
+
+        public Project(string id)
+        {
+            if (Client.CheckId(id)) this.Id = id;
+        }
     }
 
     public class Section
     {
         [JsonProperty("id")]
-        public string id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        public Section()
+        {
+
+        }
+
+        public Section(string id)
+        {
+            if (Client.CheckId(id)) this.Id = id;
+        }
     }
 
     public class Membership
@@ -97,23 +176,73 @@ namespace Asana
 
         [JsonProperty("is_organization")]
         public bool IsOrganisation { get; set; }
+
+        public Workspace()
+        {
+        }
+
+        public Workspace(string id)
+        {
+            if (Client.CheckId(id)) this.Id = id;
+        }
     }
 
     public class Tag
     {
-        public string id { get; set; }
-        public string color { get; set; }
-        public string created_at { get; set; }
-        public List<Follower> followers { get; set; }
-        public string name { get; set; }
-        public string notes { get; set; }
-        public Workspace workspace { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("color")]
+        public string Color { get; set; }
+
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
+
+        [JsonProperty("followers")]
+        public List<Follower> Followers { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("notes")]
+        public string Notes { get; set; }
+
+        [JsonProperty("workspace")]
+        public Workspace Workspace { get; set; }
+
+        public Tag()
+        {
+        }
+
+        public Tag(string id)
+        {
+            if (Helpers.Classes.CheckId(id)) this.Id = id;
+        }
     }
 
     public class Heart
     {
         public string id { get; set; }
         public User user { get; set; }
+
+        public Heart()
+        {
+
+        }
+
+        public Heart(string id)
+        {
+            if (Client.CheckId(id)) this.Id = id;
+        }
+    }
+
+    public class Photo
+    {
+        public string image_21x21 { get; set; }
+        public string image_27x27 { get; set; }
+        public string image_36x36 { get; set; }
+        public string image_60x60 { get; set; }
+        public string image_128x128 { get; set; }
     }
 
 }

@@ -19,7 +19,7 @@ namespace Asana
             if (!CheckId(taskId)) throw new ArgumentException("Invalid task id.");
             var request = new AsanaRequest(this, Method.GET, "tasks/" + taskId);
 
-            return this.Execute<Asana.Task>(request);
+            return request.Execute<Asana.Task>(this);
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Asana
             string resource = "workspace/" + workspaceId + "/tasks/";
             var request = new AsanaRequest(this, Method.GET, resource);
 
-            return this.Execute<List<Task>>(request);
+            return request.Execute<List<Task>>(this);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Asana
         public User GetCurrentUser()
         {
             var request = new AsanaRequest(this, Method.GET, "users/me");
-            return this.Execute<Asana.User>(request);
+            return request.Execute<Asana.User>(this);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Asana
         {
             if (!CheckId(userId)) throw new ArgumentException("Supplied task id is invalid.");
             var request = new AsanaRequest(this, Method.GET, "users/" + userId);
-            return this.Execute<Asana.User>(request);
+            return request.Execute<Asana.User>(this);
         }
 
     }

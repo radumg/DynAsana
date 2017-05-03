@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft;
-using Web;
 using Asana;
 using RestSharp;
 
@@ -22,12 +21,14 @@ namespace Asana
     public class Task
     {
         #region Properties
+
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [SkipProperty]
         [JsonProperty("assignee")]
         public Asana.User Assignee { get; set; }
 
@@ -35,36 +36,45 @@ namespace Asana
         public string AssigneeStatus { get; set; }
 
         [JsonProperty("completed")]
-        public bool Completed { get; set; }
+        public bool? Completed { get; set; }
 
+        [SkipProperty]
         [JsonProperty("custom_fields")]
         public List<Asana.CustomField> CustomFields { get; set; }
 
         [JsonProperty("followers")]
-        public Asana.Follower[] Followers { get; private set; }
+        public Asana.Follower[] Followers { get; set; }
 
         [JsonProperty("notes")]
         public string Notes { get; set; }
 
+        [SkipProperty]
         [JsonProperty("tags")]
-        public List<Asana.Tag> Tags { get; private set; }
+        public List<Asana.Tag> Tags { get; set; }
+
         #endregion
 
         #region Context
+
+        [SkipProperty]
         [JsonProperty("workspace")]
         public Asana.Workspace Workspace { get; set; }
 
+        [SkipProperty]
         [JsonProperty("projects")]
         public List<Asana.Project> Projects { get; set; }
 
         [JsonProperty("parent")]
         public Asana.Task Parent { get; set; }
 
+        [SkipProperty]
         [JsonProperty("memberships")]
         public List<Asana.Membership> Memberships { get; set; }
+
         #endregion
 
         #region Timestamps
+
         [JsonProperty("created_at", NullValueHandling = NullValueHandling.Ignore)]
         public string CreatedAt { get; private set; }
 
@@ -79,20 +89,22 @@ namespace Asana
 
         [JsonProperty("modified_at", NullValueHandling = NullValueHandling.Ignore)]
         public string ModifiedAt { get; private set; }
+
         #endregion
 
         #region Hearts
 
         [JsonProperty("hearted")]
-        public bool Hearted { get; private set; }
+        public bool? Hearted { get; private set; }
 
+        [SkipProperty]
         [JsonProperty("hearts")]
         public List<Asana.Heart> Hearts { get; private set; }
 
         [JsonProperty("num_hearts")]
-        public int NumberOfHearts { get; private set; }
+        public int? NumberOfHearts { get; private set; }
 
-    #endregion
+        #endregion
 
         /// <summary>
         /// Create an Asana task
@@ -110,18 +122,6 @@ namespace Asana
         /// </summary>
         public Task()
         {
-        }
-
-        public void AddProject(Project proj)
-        {
-            if(this.Projects==null) this.Projects = new List<Project>();
-            if (proj!=null) this.Projects.Add(proj);
-        }
-
-        public void AddTag(Tag tag)
-        {
-            if (this.Tags == null) this.Tags = new List<Tag>();
-            if (tag != null) this.Tags.Add(tag);
         }
 
         /// <summary>

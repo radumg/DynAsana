@@ -109,7 +109,6 @@
     <Compile Include="Asana\Client\PUT.cs" />
     <Compile Include="Asana\Requests\AsanaRequest.cs" />
     <Compile Include="Asana\Requests\AsanaResponse.cs" />
-    <Compile Include="Asana\Classes\Webhook.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

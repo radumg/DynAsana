@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 /// <summary>
 /// Namespace used to host classes and methods used during debugging only, in the absence of proper unit tests
@@ -21,7 +22,7 @@ namespace Asana
             Console.WriteLine("BaseUrl : " + asanaClient.BaseUrl);
             Console.WriteLine();
 
-            // GET a task from Asana
+            // GET the current user from Asana
             Console.WriteLine("Current user ======================");
             var user = asanaClient.GetCurrentUser();
             Console.WriteLine("Id   : " + user.Id);
@@ -40,36 +41,51 @@ namespace Asana
             Console.WriteLine("Deserialised task =================");
             Console.WriteLine("Id   : " + task.Id);
             Console.WriteLine("Name : " + task.Name);
-            Console.Write("Tags : "); task.Tags.ForEach(t => Console.Write(t.name + ", "));
+            Console.Write("Tags : "); task.Tags.ForEach(t => Console.Write(t.Name + ", "));
             Console.WriteLine();
-            Console.WriteLine("Description : " + task.Notes.Substring(0,50));
+            Console.WriteLine("Description : " + task.Notes.Substring(0, 50));
 
             // POST a task to Asana
             Console.WriteLine();
             Console.WriteLine("POST a task to Asana ==============");
-            var uploadTask = new Task();
-            var proj = new Project() { Id = "200419949000730", Name="software dev" };
-            uploadTask.Workspace = new Workspace() { Id = "198488041683503" };
-            uploadTask.AddProject(proj);
-            uploadTask.Assignee = new User() { Id = "198487209472854" };
-            uploadTask.Name = "New task created at " + DateTime.Now.Hour.ToString() +":"+ DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
-            uploadTask.Notes = "This is a task created from the API.";
-            uploadTask.AddTag(new Tag() { id = "204494482735923" });
-
-            var createdTask = asanaClient.CreateTask(uploadTask);
+            var nt = newTask();
+            var createdTask = asanaClient.CreateTask(nt);
             Console.WriteLine("Id   : " + createdTask.Id);
             Console.WriteLine("Name : " + createdTask.Name);
+            Console.Write("Tags : "); task.Tags.ForEach(t => Console.Write(t.Name + ", "));
             Console.WriteLine();
-            
 
             // wait before closing the window
             Console.WriteLine("Press any key to exit now...");
             Console.ReadKey();
         }
 
+        internal static Asana.Task newTask()
+        {
+            var uploadTask = new Task();
+            var proj = new Project() { Id = "200419949000730", Name = "software dev" };
+            var projList = new List<Project>();
+            projList.Add(proj);
+            uploadTask.Projects = projList;
+            uploadTask.Workspace = new Workspace() { Id = "198488041683503" };
+            uploadTask.Assignee = new User() { Id = "198487209472854" };
+            uploadTask.Name = "New task created at " + DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
+            uploadTask.Notes = "This is a task created from the API.";
+            var tag = new Tag() { Id = "204494482735923" };
+            var tagList = new List<Tag>();
+            tagList.Add(tag);
+            uploadTask.Tags = tagList;
+            return uploadTask;
+        }
+
         public static void Dump(object obj)
         {
+            Console.WriteLine("~~~~~~ "+ obj.ToString() + "~~~~~~ ");
             Console.WriteLine(JObject.FromObject(obj).ToString());
+            Console.WriteLine("~~~~~~~~~~~~~ ");
         }
+
+
+
     }
 }

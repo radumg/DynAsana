@@ -48,29 +48,25 @@
             <param name="task">The task to upload.</param>
             <returns>The createad task.</returns>
         </member>
+        <member name="M:Asana.Client.GetValidProperties(System.Object)">
+            <summary>
+            Gets only non-null properties from a Type. Also respects the [SkipProperty] attribute.
+            </summary>
+            <param name="obj">The object to extract type properties from.</param>
+            <returns>A dictionary of properties and their values.</returns>
+        </member>
+        <member name="M:Asana.Client.GetValidPropertiesJSON(System.Object)">
+            <summary>
+            Gets JSON encoded non-null properties from a Type. Also respects the [SkipProperty] attribute.
+            </summary>
+            <param name="obj">The object to extract type properties from.</param>
+            <returns>A dictionary of properties and their values.</returns>
+        </member>
         <member name="M:Asana.Client.#ctor(System.String)">
             <summary>
             Asana client constructor
             </summary>
             <param name="token">OAuth token, must be valid.</param>
-        </member>
-        <member name="M:Asana.Client.Execute``1(Asana.AsanaRequest)">
-            <summary>
-            Executes an Asana Request
-            </summary>
-            <typeparam name="T">The Asana object type to deserialize as.</typeparam>
-            <param name="request">The Asana Request to execute.</param>
-            <returns>Response from Asana API deserialized as the supplied type.</returns>
-        </member>
-        <member name="M:Asana.Client.Deserialize``1(RestSharp.IRestResponse,System.String)">
-            <summary>
-            Deserializes a response from the Asana API to the supplied object type.
-            </summary>
-            <typeparam name="T">The type to deserialize to.</typeparam>
-            <param name="response">The response from Asana API to deserialize.</param>
-            <param name="JsonToken">Optional : specify a JSON token as the root element to deserialise from.
-            Default for Asana is : "$.data"</param>
-            <returns>The supplied response from Asana API, deserialized as the supplied type.</returns>
         </member>
         <member name="M:Asana.Client.TestConnection">
             <summary>
@@ -97,6 +93,24 @@
             Represents any request to the Asana API. Inherits from the RestSharp RestRequest class.
             </summary>
         </member>
+        <member name="M:Asana.AsanaRequest.Execute``1(Asana.Client)">
+            <summary>
+            Executes an Asana Request
+            </summary>
+            <typeparam name="T">The Asana object type to deserialize as.</typeparam>
+            <param name="request">The Asana Request to execute.</param>
+            <returns>Response from Asana API deserialized as the supplied type.</returns>
+        </member>
+        <member name="M:Asana.AsanaRequest.Deserialize``1(RestSharp.IRestResponse,System.String)">
+            <summary>
+            Deserializes a response from the Asana API to the supplied object type.
+            </summary>
+            <typeparam name="T">The type to deserialize to.</typeparam>
+            <param name="response">The response from Asana API to deserialize.</param>
+            <param name="JsonToken">Optional : specify a JSON token as the root element to deserialise from.
+            Default for Asana is : "$.data"</param>
+            <returns>The supplied response from Asana API, deserialized as the supplied type.</returns>
+        </member>
         <member name="T:Asana.Error">
             <summary>
             Individual error message from Asana API.
@@ -106,29 +120,6 @@
             <summary>
             Response from the Asana API.
             </summary>
-        </member>
-        <member name="T:Asana.Webhook">
-            <summary>
-            Class represents an Incoming Webhook connection in Slack
-            </summary>
-        </member>
-        <member name="M:Asana.Webhook.#ctor(System.String,System.String,System.String,System.String,System.String)">
-            <summary>
-            Create a webhook for use with Slack.
-            </summary>
-            <param name="Url">The URL to send data to</param>
-            <param name="Channel">The Slack channel to post to, defaults to #general</param>
-            <param name="User">The name of the user to post as</param>
-            <param name="EmojiIcon">The emoji to use as icon. Uses Slack syntax, like :ghost: or :rocket:</param>
-            <param name="UrlIcon">An URL to an image to use as the icon.</param>
-        </member>
-        <member name="M:Asana.Webhook.CreateTask(System.String,System.String)">
-            <summary>
-            Post a message using webhooks
-            </summary>
-            <param name="webhook">Specify a webhook object to use. If nothing is supplied, it defaults to the Client's webhook.</param>
-            <param name="name">The text to send</param>
-            <returns>The message JSON payload</returns>
         </member>
         <member name="T:Asana.Properties.Resources">
             <summary>
@@ -156,6 +147,16 @@
               Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>
         </member>
+        <member name="T:Asana.Helpers">
+            <summary>
+            Utility functions that are used for validation and other auxiliary tasks
+            </summary>
+        </member>
+        <member name="M:Asana.Helpers.CheckURI(System.Uri)">
+            <summary>Check the URI is valid</summary>
+            <param name="uriToCheck">The URI to check</param>
+            <returns>True if is valid, False otherwise</returns>
+        </member>
         <member name="T:Asana.Task">
             <summary>
             Class represents an Asana task.
@@ -179,29 +180,6 @@
             Serializes the Slack message to JSON
             </summary>
             <returns></returns>
-        </member>
-        <member name="T:Web.Request">
-            <summary>
-            Utility class used to construct a web request and send it
-            </summary>
-        </member>
-        <member name="M:Web.Request.POST(System.String,System.String)">
-            <summary>
-            Utility function to send a POST request to a URL using a "payload" request parameter
-            </summary>
-            <param name="url">The string URL to send request to</param>
-            <param name="jsonPayload">The POST data to send in JSON format</param>
-            <returns>The server response as a string</returns>
-        </member>
-        <member name="T:Web.Helpers">
-            <summary>
-            Utility functions that are used for validation and other auxiliary tasks
-            </summary>
-        </member>
-        <member name="M:Web.Helpers.checkURI(System.Uri)">
-            <summary>Check the URI is valid</summary>
-            <param name="uriToCheck">The URI to check</param>
-            <returns>True if is valid, False otherwise</returns>
         </member>
     </members>
 </doc>
