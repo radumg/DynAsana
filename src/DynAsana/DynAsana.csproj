@@ -101,7 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Asana\Classes\Classes.cs" />
-    <Compile Include="Asana\Classes\HelperClasses.cs" />
+    <Compile Include="Asana\Classes\Helpers.Classes.cs" />
     <Compile Include="Asana\Classes\PostClasses.cs" />
     <Compile Include="Asana\Client\GET.cs" />
     <Compile Include="Asana\Client\POST.cs" />
@@ -119,7 +119,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Web\Helpers.cs" />
+    <Compile Include="Web\Helpers.Web.cs" />
     <Compile Include="Asana\Classes\Task.cs" />
     <Compile Include="Asana\Client\AsanaClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

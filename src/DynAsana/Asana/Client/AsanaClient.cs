@@ -70,17 +70,6 @@ namespace Asana
             return true;
         }
 
-        /// <summary>
-        /// Check if the supplied Id is valid. Note: does not guarantee Id is valid, only checks general format.
-        /// </summary>
-        /// <param name="Id">The id to check</param>
-        /// <returns>True if Id seems valid, false otherwise.</returns>
-        internal static Boolean CheckId(string Id)
-        {
-            if (String.IsNullOrEmpty(Id) || string.IsNullOrWhiteSpace(Id)) return false;
-            if (!long.TryParse(Id, out var id)) return false;
-            return true;
-        }
         #endregion
     }
 }
