@@ -125,6 +125,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Asana\Asana.Authentication.cs" />
     <None Include="pkg.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -133,6 +134,7 @@
     <None Include="Resources\add_to_slack.png" />
     <Resource Include="Resources\dynamo-sync-32.ico" />
     <None Include="Resources\slack.png" />
+    <Content Include="keys.sample.xml" />
     <Content Include="Resources\slack.ico" />
     <None Include="packages.config" />
   </ItemGroup>

@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Asana;
+using System.IO;
+using System.Xml;
 
 /// <summary>
 /// Namespace used to host classes and methods used during debugging only, in the absence of proper unit tests
@@ -15,8 +18,12 @@ namespace Asana
     {
         private static void Main(string[] args)
         {
+            // read the API settings
+            Console.WriteLine("read the API settings ========");
+            Console.WriteLine(Asana.Authentication.APIKEY); Console.WriteLine();
+
             // build a new Slack client object
-            var asanaClient = new Asana.Client("Bearer 0/7e47c745e9546e47b4f677926649db7d");
+            var asanaClient = new Asana.Client(Asana.Authentication.APIKEY);
             Console.WriteLine("Created a new Asana client ========");
             Console.WriteLine("Token : " + asanaClient.Token);
             Console.WriteLine("BaseUrl : " + asanaClient.BaseUrl);
