@@ -18,10 +18,6 @@ namespace Asana
     {
         private static void Main(string[] args)
         {
-            // read the API settings
-            Console.WriteLine("read the API settings ========");
-            Console.WriteLine(Asana.Authentication.APIKEY); Console.WriteLine();
-
             // build a new Slack client object
             var asanaClient = new Asana.Client(Asana.Authentication.APIKEY);
             Console.WriteLine("Created a new Asana client ========");

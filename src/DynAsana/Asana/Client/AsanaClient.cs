@@ -56,6 +56,7 @@ namespace Asana
 
             var response = this.restClient.Execute(request.restRequest);
             Console.WriteLine("Testing new client returned status code : " + response.StatusCode.ToString());
+            Console.WriteLine();
             return response;
         }
 

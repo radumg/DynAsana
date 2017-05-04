@@ -4,6 +4,11 @@
 # API KEY file
 keys.xml
 
+# Debug project
+/DebugApp/Debug/*
+/DebugApp/bin/*
+/DebugApp/obj/*
+
 # User-specific files
 *.suo
 *.user
@@ -24,6 +29,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+.dll
 
 # Visual Studio 2015 cache/options directory
 .vs/

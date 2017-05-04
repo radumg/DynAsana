@@ -135,6 +135,7 @@
     <Resource Include="Resources\dynamo-sync-32.ico" />
     <None Include="Resources\slack.png" />
     <Content Include="keys.sample.xml" />
+    <Content Include="keys.xml" />
     <Content Include="Resources\slack.ico" />
     <None Include="packages.config" />
   </ItemGroup>
