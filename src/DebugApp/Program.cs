@@ -27,7 +27,7 @@ namespace Asana
 
             // GET the current user from Asana
             Console.WriteLine("Current user ======================");
-            var user = asanaClient.GetCurrentUser();
+            var user = asanaClient.GetUserBySession();
             Console.WriteLine("Id   : " + user.Id);
             Console.WriteLine("Name : " + user.Name);
             Console.WriteLine("Id   : " + user.Email);
@@ -37,7 +37,7 @@ namespace Asana
 
             // GET a task from Asana
             Console.WriteLine("GET a task from Asana =============");
-            var task = asanaClient.GetTask("314317576360056");
+            var task = asanaClient.GetTaskById("314317576360056");
             // Access deserialised properties
             Console.WriteLine("Id   : " + task.Id);
             Console.WriteLine("Name : " + task.Name);

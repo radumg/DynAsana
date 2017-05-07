@@ -5,7 +5,7 @@ C:\Users\radug\Documents\GitHub\DynAsana\src\DebugApp\bin\Debug\Asana.dll
 C:\Users\radug\Documents\GitHub\DynAsana\src\DebugApp\bin\Debug\Newtonsoft.Json.dll
 C:\Users\radug\Documents\GitHub\DynAsana\src\DebugApp\bin\Debug\RestSharp.dll
 C:\Users\radug\Documents\GitHub\DynAsana\src\DebugApp\bin\Debug\Asana.pdb
-C:\Users\radug\Documents\GitHub\DynAsana\src\DebugApp\bin\Debug\Asana.xml
+C:\Users\radug\Documents\GitHub\DynAsana\src\DebugApp\bin\Debug\Asana.dll.config
 C:\Users\radug\Documents\GitHub\DynAsana\src\DebugApp\bin\Debug\Newtonsoft.Json.xml
 C:\Users\radug\Documents\GitHub\DynAsana\src\DebugApp\bin\Debug\RestSharp.xml
 C:\Users\radug\Documents\GitHub\DynAsana\src\DebugApp\obj\Debug\DynAsana.DebugApp.csprojResolveAssemblyReference.cache

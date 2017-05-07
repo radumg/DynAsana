@@ -101,9 +101,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asana\Classes\Classes.cs" />
+    <Compile Include="Asana\Classes\Tag.cs" />
+    <Compile Include="Asana\Classes\CustomField.cs" />
+    <Compile Include="Asana\Classes\Workspace.cs" />
+    <Compile Include="Asana\Classes\Project.cs" />
+    <Compile Include="Asana\Classes\User.cs" />
+    <Compile Include="Asana\Classes\Heart.cs" />
     <Compile Include="Asana\Classes\Helpers.Classes.cs" />
-    <Compile Include="Asana\Classes\PostClasses.cs" />
     <Compile Include="Asana\Client\GET.cs" />
     <Compile Include="Asana\Client\POST.cs" />
     <Compile Include="Asana\Client\DELETE.cs" />

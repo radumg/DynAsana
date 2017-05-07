@@ -21,15 +21,29 @@ namespace Asana
         internal RestRequest restRequest { get; private set; }
         public AsanaErrorResponse errorResponse;
 
+        /// <summary>
+        /// Construct an Asana request from a supplied client, web method and resource targeted.
+        /// </summary>
+        /// <param name="client">The Asana client, required for authentication.</param>
+        /// <param name="method">The method to use. Ex : Method.GET, Method.POST, etc.</param>
+        /// <param name="resource">(optional) The URL fragment for the resource targeted. Ex : "tasks/".
+        /// Note : does not require leading slash.</param>
         public AsanaRequest(Asana.Client client, Method method, string resource = null)
         {
+            /// The following sets the correct communication protocol, required as Asana API uses https.
+            /// Otherwise, any request to API fails.
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             this.restRequest = new RestRequest();
             this.restRequest.AddHeader("Authorization", client.Token);
+            this.restRequest.AddHeader("content-type", "application/x-www-form-urlencoded");
+     
+            /// The following headers are not required by useful.
+            /// Asana-Fast-Api uses the beta version of the new (2017) Asana API, designed to be faster
+            /// cache-control encourages system not to cache requests and fetch new results every time
+            /// DynAsana-token is used by the OAuth authentication flow to verify the authentication request came from the DynAsana library.
             this.restRequest.AddHeader("Asana-Fast-Api", "true");
             this.restRequest.AddHeader("cache-control", "no-cache");
-            this.restRequest.AddHeader("content-type", "application/x-www-form-urlencoded");
             this.restRequest.AddHeader("DynAsana-token", Assembly.GetExecutingAssembly().GetType().GUID.ToString());
 
             this.restRequest.Resource = resource;
@@ -101,8 +115,6 @@ namespace Asana
             return JsonConvert.DeserializeObject<T>(taskData, settings);
         }
 
-
     }
-
 
 }
