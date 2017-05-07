@@ -1,4 +1,4 @@
-C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\bin\Release\Asana.xml
+C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\bin\Release\Asana.dll.config
 C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\bin\Release\Asana.dll
 C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\bin\Release\Asana.pdb
 C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\bin\Release\DynamoServices.dll
@@ -6,9 +6,9 @@ C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\bin\Release\Newtonsoft.Jso
 C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\bin\Release\RestSharp.dll
 C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\bin\Release\Newtonsoft.Json.xml
 C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\bin\Release\RestSharp.xml
+C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\obj\Release\DynAsana.csprojResolveAssemblyReference.cache
 C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\obj\Release\Asana.g.resources
 C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\obj\Release\Asana.Properties.Resources.resources
 C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\obj\Release\DynAsana.csproj.GenerateResource.Cache
 C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\obj\Release\Asana.dll
 C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\obj\Release\Asana.pdb
-C:\Users\radug\Documents\GitHub\DynAsana\src\DynAsana\obj\Release\DynAsana.csprojResolveAssemblyReference.cache

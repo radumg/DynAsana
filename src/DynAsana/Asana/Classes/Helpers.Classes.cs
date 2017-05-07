@@ -11,7 +11,7 @@ namespace Asana.Helpers
     {
     }
 
-    public static class TypeExtensions
+    internal static class TypeExtensions
     {
         public static PropertyInfo[] GetFilteredProperties(this Type type)
         {
