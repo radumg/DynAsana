@@ -18,7 +18,7 @@ namespace Asana
         /// </summary>
         /// <param name="workspaceId">The ID of the workspace to retrieve.</param>
         /// <returns>Returns the complete workspace record for a single workspace.</returns>
-        public Workspace GetTagById(string workspaceId)
+        public Workspace GetWorkspaceById(string workspaceId)
         {
             if (!Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
             string resource = "workspaces/" + workspaceId;
