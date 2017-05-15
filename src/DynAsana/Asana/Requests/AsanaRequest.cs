@@ -2,13 +2,8 @@
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Asana
 {
@@ -19,7 +14,7 @@ namespace Asana
     {
         public TimeSpan TimeToComplete { get; private set; }
         internal RestRequest restRequest { get; private set; }
-        public AsanaErrorResponse errorResponse;
+        internal AsanaErrorResponse errorResponse;
 
         /// <summary>
         /// Construct an Asana request from a supplied client, web method and resource targeted.

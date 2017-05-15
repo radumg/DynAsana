@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Asana
@@ -22,7 +18,7 @@ namespace Asana
     /// <summary>
     /// Response from the Asana API detailing the errors that occured.
     /// </summary>
-    public class AsanaErrorResponse
+    internal class AsanaErrorResponse
     {
         [JsonProperty("errors")]
         internal List<AsanaError> Errors { get; set; }

@@ -1,10 +1,7 @@
 ﻿using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Asana.Helpers;
+using Asana.Classes;
 
 namespace Asana
 {
@@ -20,11 +17,11 @@ namespace Asana
         /// <returns>Returns the complete workspace record for a single workspace.</returns>
         public Workspace GetWorkspaceById(string workspaceId)
         {
-            if (!Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
+            if (!Helpers.Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
             string resource = "workspaces/" + workspaceId;
             var request = new AsanaRequest(this, Method.GET, resource);
 
-            return request.Execute<Asana.Workspace>(this);
+            return request.Execute<Workspace>(this);
         }
 
         /// <summary>
@@ -50,11 +47,11 @@ namespace Asana
         /// <returns>Returns the complete task record for a single project.</returns>
         public Project GetProjectById(string projectId)
         {
-            if (!Classes.CheckId(projectId)) throw new ArgumentException("Invalid project id.");
+            if (!Helpers.Classes.CheckId(projectId)) throw new ArgumentException("Invalid project id.");
             string resource = "projects/" + projectId;
             var request = new AsanaRequest(this, Method.GET, resource);
 
-            return request.Execute<Asana.Project>(this);
+            return request.Execute<Project>(this);
         }
 
         /// <summary>
@@ -64,7 +61,7 @@ namespace Asana
         /// <returns>Returns the compact project records for all projects in the workspace.</returns>
         public List<Project> GetProjectsByWorkspace(string workspaceId)
         {
-            if (!Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
+            if (!Helpers.Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
             string resource = "workspace/" + workspaceId + "/projects/";
             var request = new AsanaRequest(this, Method.GET, resource);
 
@@ -78,7 +75,7 @@ namespace Asana
         /// <returns>Returns the compact project records for all projects in the team.</returns>
         public List<Project> GetProjectsByTeam(string teamId)
         {
-            if (!Classes.CheckId(teamId)) throw new ArgumentException("Invalid team id.");
+            if (!Helpers.Classes.CheckId(teamId)) throw new ArgumentException("Invalid team id.");
             string resource = "teams/" + teamId + "/projects/";
             var request = new AsanaRequest(this, Method.GET, resource);
 
@@ -92,7 +89,7 @@ namespace Asana
         /// <returns>Returns a compact representation of all of the projects the task is in.</returns>
         public List<Project> GetProjectsByTask(string taskId)
         {
-            if (!Classes.CheckId(taskId)) throw new ArgumentException("Invalid task id.");
+            if (!Helpers.Classes.CheckId(taskId)) throw new ArgumentException("Invalid task id.");
             string resource = "tasks/" + taskId + "/projects/";
             var request = new AsanaRequest(this, Method.GET, resource);
 
@@ -127,11 +124,11 @@ namespace Asana
         /// <returns>Returns the complete task record for a single task.</returns>
         public Task GetTaskById(string taskId)
         {
-            if (!Classes.CheckId(taskId)) throw new ArgumentException("Invalid task id.");
+            if (!Helpers.Classes.CheckId(taskId)) throw new ArgumentException("Invalid task id.");
             string resource = "tasks/" + taskId;
             var request = new AsanaRequest(this, Method.GET, resource);
 
-            return request.Execute<Asana.Task>(this);
+            return request.Execute<Task>(this);
         }
 
         /// <summary>
@@ -141,7 +138,7 @@ namespace Asana
         /// <returns>A list of all the tasks in the supplied workspace.</returns>
         public List<Task> GetTasksByWorkspace(string workspaceId)
         {
-            if (!Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
+            if (!Helpers.Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
             string resource = "workspace/" + workspaceId + "/tasks/";
             var request = new AsanaRequest(this, Method.GET, resource);
 
@@ -155,7 +152,7 @@ namespace Asana
         /// <returns>Returns the compact task records for all tasks within the given project, ordered by their priority within the project.</returns>
         public List<Task> GetTasksByProject(string projectId)
         {
-            if (!Classes.CheckId(projectId)) throw new ArgumentException("Invalid project id.");
+            if (!Helpers.Classes.CheckId(projectId)) throw new ArgumentException("Invalid project id.");
             string resource = "projects/" + projectId + "/tasks/";
             var request = new AsanaRequest(this, Method.GET, resource);
 
@@ -169,7 +166,7 @@ namespace Asana
         /// <returns>Returns the compact task records for all tasks with the given tag</returns>
         public List<Task> GetTasksByTag(string tagId)
         {
-            if (!Classes.CheckId(tagId)) throw new ArgumentException("Invalid tag id.");
+            if (!Helpers.Classes.CheckId(tagId)) throw new ArgumentException("Invalid tag id.");
             string resource = "tags/" + tagId + "/tasks/";
             var request = new AsanaRequest(this, Method.GET, resource);
 
@@ -183,7 +180,7 @@ namespace Asana
         /// <returns>Returns a compact representation of all of the subtasks of a task.</returns>
         public List<Task> GetSubtasksByTask(string taskId)
         {
-            if (!Classes.CheckId(taskId)) throw new ArgumentException("Invalid task id.");
+            if (!Helpers.Classes.CheckId(taskId)) throw new ArgumentException("Invalid task id.");
             string resource = "tasks/" + taskId + "/subtasks/";
             var request = new AsanaRequest(this, Method.GET, resource);
 
@@ -197,7 +194,7 @@ namespace Asana
         /// <returns>Returns compact records for all sections in the specified project.</returns>
         public List<Section> GetSectionsByProject(string projectId)
         {
-            if (!Classes.CheckId(projectId)) throw new ArgumentException("Invalid project id.");
+            if (!Helpers.Classes.CheckId(projectId)) throw new ArgumentException("Invalid project id.");
             string resource = "projects/" + projectId + "/sections/";
             var request = new AsanaRequest(this, Method.GET, resource);
 
@@ -232,11 +229,11 @@ namespace Asana
         /// <returns>Returns the complete tag record for a single tag.</returns>
         public Tag GetTagById(string tagId)
         {
-            if (!Classes.CheckId(tagId)) throw new ArgumentException("Invalid tag id.");
+            if (!Helpers.Classes.CheckId(tagId)) throw new ArgumentException("Invalid tag id.");
             string resource = "tags/" + tagId;
             var request = new AsanaRequest(this, Method.GET, resource);
 
-            return request.Execute<Asana.Tag>(this);
+            return request.Execute<Tag>(this);
         }
 
         /// <summary>
@@ -246,7 +243,7 @@ namespace Asana
         /// <returns>Returns the compact tag records in the workspace.</returns>
         public List<Tag> GetTagsByWorkspace(string workspaceId)
         {
-            if (!Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
+            if (!Helpers.Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
             string resource = "workspace/" + workspaceId + "/tags/";
             var request = new AsanaRequest(this, Method.GET, resource);
 
@@ -281,7 +278,7 @@ namespace Asana
         public User GetUserBySession()
         {
             var request = new AsanaRequest(this, Method.GET, "users/me");
-            return request.Execute<Asana.User>(this);
+            return request.Execute<User>(this);
         }
 
         /// <summary>
@@ -291,10 +288,10 @@ namespace Asana
         /// <returns>The requested Asana user.</returns>
         public User GetUserById(string userId)
         {
-            if (!Classes.CheckId(userId)) throw new ArgumentException("Supplied task id is invalid.");
+            if (!Helpers.Classes.CheckId(userId)) throw new ArgumentException("Supplied task id is invalid.");
             string resource = "users/" + userId;
             var request = new AsanaRequest(this, Method.GET, resource);
-            return request.Execute<Asana.User>(this);
+            return request.Execute<User>(this);
         }
 
         /// <summary>
@@ -304,7 +301,7 @@ namespace Asana
         /// <returns>Returns the user records for all users in the specified workspace or organization.</returns>
         public List<User> GetUsersByWorkspace(string workspaceId)
         {
-            if (!Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
+            if (!Helpers.Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
             string resource = "workspace/" + workspaceId + "/users/";
             var request = new AsanaRequest(this, Method.GET, resource);
 

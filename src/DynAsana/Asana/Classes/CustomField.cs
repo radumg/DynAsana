@@ -1,12 +1,6 @@
-﻿using Asana.Helpers;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
-namespace Asana
+namespace Asana.Classes
 {
     /// <summary>
     /// Class represents the value of an Asana CustomField.

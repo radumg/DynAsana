@@ -4,9 +4,58 @@
         <name>Asana</name>
     </assembly>
     <members>
+        <member name="T:Asana.Tag">
+            <summary>
+            Class represents an Asana tag.
+            See API structure at https://asana.com/developers/api-reference/tags
+            </summary>
+        </member>
+        <member name="T:Asana.CustomFieldValue">
+            <summary>
+            Class represents the value of an Asana CustomField.
+            See API structure at https://asana.com/developers/api-reference/custom_fields
+            </summary>
+        </member>
+        <member name="T:Asana.CustomField">
+            <summary>
+            Class represents an Asana CustomField.
+            See API structure at https://asana.com/developers/api-reference/custom_fields
+            </summary>
+        </member>
+        <member name="T:Asana.Workspace">
+            <summary>
+            Class represents an Asana workspace.
+            See API structure at https://asana.com/developers/api-reference/workspaces
+            </summary>
+        </member>
+        <member name="T:Asana.Project">
+            <summary>
+            Class represents an Asana project.
+            See API structure at https://asana.com/developers/api-reference/projects
+            </summary>
+        </member>
+        <member name="T:Asana.Section">
+            <summary>
+            Class represents an Asana section.
+            See API structure at https://asana.com/developers/api-reference/sections
+            </summary>
+        </member>
+        <member name="T:Asana.Membership">
+            <summary>
+            Class represents an Asana membership.
+            See API structure at https://asana.com/developers/api-reference/sections
+            </summary>
+        </member>
         <member name="T:Asana.User">
             <summary>
-            The below classes represent Asana entities.
+            Class represents an Asana user.
+            See API structure at https://asana.com/developers/api-reference/users
+            </summary>
+        </member>
+        <member name="T:Asana.Heart">
+            <summary>
+            Class represents an Asana heart.
+            See API structure at https://asana.com/developers/api-reference/stories
             </summary>
         </member>
         <member name="M:Asana.Helpers.Classes.CheckFieldValue(System.String)">
@@ -38,32 +87,146 @@
             Asana clients represent a single connection to an Asana organisation, with all associated properties and methods.
             </summary>
         </member>
-        <member name="M:Asana.Client.GetTask(System.String)">
+        <member name="M:Asana.Client.GetWorkspaceById(System.String)">
+            <summary>
+            Get a specific Asana workspace.
+            </summary>
+            <param name="workspaceId">The ID of the workspace to retrieve.</param>
+            <returns>Returns the complete workspace record for a single workspace.</returns>
+        </member>
+        <member name="M:Asana.Client.GetWorkspaces">
+            <summary>
+            Get all workspaces available to user.
+            </summary>
+            <returns>Returns the compact records for all workspaces visible to the authorized user.</returns>
+        </member>
+        <member name="M:Asana.Client.GetProjectById(System.String)">
+            <summary>
+            Get a specific Asana project.
+            </summary>
+            <param name="projectId">The ID of the project to retrieve.</param>
+            <returns>Returns the complete task record for a single project.</returns>
+        </member>
+        <member name="M:Asana.Client.GetProjectsByWorkspace(System.String)">
+            <summary>
+            Get all projects in a specific workspace.
+            </summary>
+            <param name="workspaceId">The id of the workspace whose projects to retrieve.</param>
+            <returns>Returns the compact project records for all projects in the workspace.</returns>
+        </member>
+        <member name="M:Asana.Client.GetProjectsByTeam(System.String)">
+            <summary>
+            Get all projects in a specific workspace.
+            </summary>
+            <param name="teamId">The id of the team whose projects to retrieve.</param>
+            <returns>Returns the compact project records for all projects in the team.</returns>
+        </member>
+        <member name="M:Asana.Client.GetProjectsByTask(System.String)">
+            <summary>
+            Get all projects the specified task if part of.
+            </summary>
+            <param name="tagId">The Id of the task whose projects to retrieve.</param>
+            <returns>Returns a compact representation of all of the projects the task is in.</returns>
+        </member>
+        <member name="M:Asana.Client.GetProjects(Asana.AsanaRequest)">
+            <summary>
+            Get all projects.
+            </summary>
+            <returns>Returns the compact project records for some filtered set of projects. Use one or more request parameters to filter the projects returned.</returns>
+        </member>
+        <member name="M:Asana.Client.GetTaskById(System.String)">
             <summary>
             Get a specific Asana task.
             </summary>
             <param name="taskId">The ID of the task to retrieve.</param>
-            <returns>The requested Asana task.</returns>
+            <returns>Returns the complete task record for a single task.</returns>
         </member>
-        <member name="M:Asana.Client.GetWorkspaceTasks(System.String)">
+        <member name="M:Asana.Client.GetTasksByWorkspace(System.String)">
             <summary>
-            Gets all tasks in a specific workspace.
+            Get all tasks in a specific workspace.
             </summary>
-            <param name="workspaceId">The workspace whose tasks to retrieve.</param>
+            <param name="workspaceId">The id of the workspace whose tasks to retrieve.</param>
             <returns>A list of all the tasks in the supplied workspace.</returns>
         </member>
-        <member name="M:Asana.Client.GetCurrentUser">
+        <member name="M:Asana.Client.GetTasksByProject(System.String)">
             <summary>
-            Get the details for the current Asana user, usually the owner of the token used.
+            Get all tasks in a specific project.
+            </summary>
+            <param name="projectId">The id of the project whose tasks to retrieve.</param>
+            <returns>Returns the compact task records for all tasks within the given project, ordered by their priority within the project.</returns>
+        </member>
+        <member name="M:Asana.Client.GetTasksByTag(System.String)">
+            <summary>
+            Get all tasks with a specific tag.
+            </summary>
+            <param name="tagId">The Id of the tag whose tasks to retrieve.</param>
+            <returns>Returns the compact task records for all tasks with the given tag</returns>
+        </member>
+        <member name="M:Asana.Client.GetSubtasksByTask(System.String)">
+            <summary>
+            Get the subtasks of a specific Asana task.
+            </summary>
+            <param name="taskId">The ID of the task whose subtasks to retrieve.</param>
+            <returns>Returns a compact representation of all of the subtasks of a task.</returns>
+        </member>
+        <member name="M:Asana.Client.GetSectionsByProject(System.String)">
+            <summary>
+            Get all sections in a specific project.
+            </summary>
+            <param name="projectId">The id of the project whose sections to retrieve.</param>
+            <returns>Returns compact records for all sections in the specified project.</returns>
+        </member>
+        <member name="M:Asana.Client.GetTasks(Asana.AsanaRequest)">
+            <summary>
+            Get all tasks.
+            </summary>
+            <returns>Returns the compact task records for some filtered set of tasks. Use one or more request parameters to filter the tasks returned.</returns>
+        </member>
+        <member name="M:Asana.Client.GetTagById(System.String)">
+            <summary>
+            Get a specific Asana tag.
+            </summary>
+            <param name="tagId">The ID of the tag to retrieve.</param>
+            <returns>Returns the complete tag record for a single tag.</returns>
+        </member>
+        <member name="M:Asana.Client.GetTagsByWorkspace(System.String)">
+            <summary>
+            Get all tags in a specific workspace.
+            </summary>
+            <param name="workspaceId">The id of the workspace whose tags to retrieve.</param>
+            <returns>Returns the compact tag records in the workspace.</returns>
+        </member>
+        <member name="M:Asana.Client.GetTags(Asana.AsanaRequest)">
+            <summary>
+            Get all tags.
+            </summary>
+            <returns>Returns the compact tag records for some filtered set of tags. Use one or more request parameters to filter the tags returned.</returns>
+        </member>
+        <member name="M:Asana.Client.GetUserBySession">
+            <summary>
+            Get the details for the currently logged in Asana user, usually the owner of the token used.
             </summary>
             <returns>The Asana current user.</returns>
         </member>
-        <member name="M:Asana.Client.GetUser(System.String)">
+        <member name="M:Asana.Client.GetUserById(System.String)">
             <summary>
             Get the details of a specific Asana user.
             </summary>
-            <param name="userId">The identifying user id.</param>
+            <param name="userId">The id of the user to retrieve.</param>
             <returns>The requested Asana user.</returns>
+        </member>
+        <member name="M:Asana.Client.GetUsersByWorkspace(System.String)">
+            <summary>
+            Get all users in a specific workspace.
+            </summary>
+            <param name="workspaceId">The id of the workspace whose users to retrieve.</param>
+            <returns>Returns the user records for all users in the specified workspace or organization.</returns>
+        </member>
+        <member name="M:Asana.Client.GetUsers(Asana.AsanaRequest)">
+            <summary>
+            Get all users.
+            </summary>
+            <returns>Returns the user records for all users in all workspaces and organizations accessible to the authenticated user. Accepts an optional workspace ID parameter.</returns>
         </member>
         <member name="M:Asana.Client.CreateTask(Asana.Task)">
             <summary>
@@ -109,6 +272,15 @@
             <summary>
             Represents any request to the Asana API. Inherits from the RestSharp RestRequest class.
             </summary>
+        </member>
+        <member name="M:Asana.AsanaRequest.#ctor(Asana.Client,RestSharp.Method,System.String)">
+            <summary>
+            Construct an Asana request from a supplied client, web method and resource targeted.
+            </summary>
+            <param name="client">The Asana client, required for authentication.</param>
+            <param name="method">The method to use. Ex : Method.GET, Method.POST, etc.</param>
+            <param name="resource">(optional) The URL fragment for the resource targeted. Ex : "tasks/".
+            Note : does not require leading slash.</param>
         </member>
         <member name="M:Asana.AsanaRequest.Execute``1(Asana.Client)">
             <summary>

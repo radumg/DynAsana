@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft;
-using Asana;
-using RestSharp;
 using Asana.Helpers;
+using Asana.Classes;
 
-namespace Asana
+namespace Asana.Classes
 {
     /// <summary>
     /// Class represents an Asana task.
@@ -28,7 +23,7 @@ namespace Asana
 
         [SkipProperty]
         [JsonProperty("assignee")]
-        public Asana.User Assignee { get; set; }
+        public User Assignee { get; set; }
 
         [JsonProperty("assignee_status")]
         public string AssigneeStatus { get; set; }
@@ -38,17 +33,17 @@ namespace Asana
 
         [SkipProperty]
         [JsonProperty("custom_fields")]
-        public List<Asana.CustomField> CustomFields { get; set; }
+        public List<CustomField> CustomFields { get; set; }
 
         [JsonProperty("followers")]
-        public Asana.Follower[] Followers { get; set; }
+        public Follower[] Followers { get; set; }
 
         [JsonProperty("notes")]
         public string Notes { get; set; }
 
         [SkipProperty]
         [JsonProperty("tags")]
-        public List<Asana.Tag> Tags { get; set; }
+        public List<Tag> Tags { get; set; }
 
         #endregion
 
@@ -56,18 +51,18 @@ namespace Asana
 
         [SkipProperty]
         [JsonProperty("workspace")]
-        public Asana.Workspace Workspace { get; set; }
+        public Workspace Workspace { get; set; }
 
         [SkipProperty]
         [JsonProperty("projects")]
-        public List<Asana.Project> Projects { get; set; }
+        public List<Project> Projects { get; set; }
 
         [JsonProperty("parent")]
-        public Asana.Task Parent { get; set; }
+        public Task Parent { get; set; }
 
         [SkipProperty]
         [JsonProperty("memberships")]
-        public List<Asana.Membership> Memberships { get; set; }
+        public List<Membership> Memberships { get; set; }
 
         #endregion
 
@@ -97,7 +92,7 @@ namespace Asana
 
         [SkipProperty]
         [JsonProperty("hearts")]
-        public List<Asana.Heart> Hearts { get; private set; }
+        public List<Heart> Hearts { get; private set; }
 
         [JsonProperty("num_hearts")]
         public int? NumberOfHearts { get; private set; }
@@ -113,7 +108,7 @@ namespace Asana
         {
             if (!String.IsNullOrEmpty(name) && !String.IsNullOrWhiteSpace(name)) this.Name = name;
             if (!String.IsNullOrEmpty(description) && !String.IsNullOrWhiteSpace(description)) this.Name = name;
-            if (workspace != null && Classes.CheckId(workspace.Id)) this.Workspace = workspace;
+            if (workspace != null && Helpers.Classes.CheckId(workspace.Id)) this.Workspace = workspace;
         }
 
         /// <summary>
@@ -133,12 +128,12 @@ namespace Asana
             List<Project> projects=null, // in Asana API, projects parameter can be empty if a workspace is supplied
             List<Tag> tags = null)
         {
-            if (workspace != null && Classes.CheckId(workspace.Id)) this.Workspace = workspace;
-            if (projects != null) projects.ForEach(p => { if (Classes.CheckId(p.Id)) { this.Projects.Add(p); } });
-            if (tags != null) tags.ForEach(t => { if (Classes.CheckId(t.Id)) { this.Tags.Add(t); } });
-            if (Classes.CheckFieldValue(name)) this.Name = name;
-            if (Classes.CheckFieldValue(description)) this.Notes = description;
-            if (assignee != null && Classes.CheckId(assignee.Id)) this.Assignee = assignee;
+            if (workspace != null && Helpers.Classes.CheckId(workspace.Id)) this.Workspace = workspace;
+            if (projects != null) projects.ForEach(p => { if (Helpers.Classes.CheckId(p.Id)) { this.Projects.Add(p); } });
+            if (tags != null) tags.ForEach(t => { if (Helpers.Classes.CheckId(t.Id)) { this.Tags.Add(t); } });
+            if (Helpers.Classes.CheckFieldValue(name)) this.Name = name;
+            if (Helpers.Classes.CheckFieldValue(description)) this.Notes = description;
+            if (assignee != null && Helpers.Classes.CheckId(assignee.Id)) this.Assignee = assignee;
         }
 
         /// <summary>

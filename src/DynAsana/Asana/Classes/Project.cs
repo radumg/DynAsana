@@ -1,12 +1,6 @@
-﻿using Asana.Helpers;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
-namespace Asana
+namespace Asana.Classes
 {
     /// <summary>
     /// Class represents an Asana project.
@@ -27,7 +21,7 @@ namespace Asana
 
         public Project(string id)
         {
-            if (Classes.CheckId(id)) this.Id = id;
+            if (Helpers.Classes.CheckId(id)) this.Id = id;
         }
     }
 
@@ -50,7 +44,7 @@ namespace Asana
 
         public Section(string id)
         {
-            if (Classes.CheckId(id)) this.Id = id;
+            if (Helpers.Classes.CheckId(id)) this.Id = id;
         }
     }
 

@@ -1,12 +1,6 @@
-﻿using Asana.Helpers;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
-namespace Asana
+namespace Asana.Classes
 {
     /// <summary>
     /// Class represents an Asana workspace.
@@ -29,7 +23,7 @@ namespace Asana
 
         public Workspace(string id)
         {
-            if (Classes.CheckId(id)) this.Id = id;
+            if (Helpers.Classes.CheckId(id)) this.Id = id;
         }
     }
 

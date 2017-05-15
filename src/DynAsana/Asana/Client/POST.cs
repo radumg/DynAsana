@@ -1,13 +1,10 @@
 ﻿using Asana.Helpers;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using Asana.Classes;
 
 namespace Asana
 {
@@ -22,7 +19,7 @@ namespace Asana
         {
             if (task == null) throw new ArgumentException("Must supply a valid task.");
             if (task.Workspace == null) throw new ArgumentException("Must specify a workspace when creating a task.");
-            if (Classes.CheckId(task.Workspace.Id) == false) throw new ArgumentException("Invalid workspace id.");
+            if (Helpers.Classes.CheckId(task.Workspace.Id) == false) throw new ArgumentException("Invalid workspace id.");
 
             var request = new AsanaRequest(this, Method.POST, "tasks/");
 
@@ -35,7 +32,7 @@ namespace Asana
             request.restRequest.AddParameter("assignee", task.Assignee.Id, ParameterType.GetOrPost);
             task.Tags.ForEach(t => request.restRequest.AddParameter("tags", t.Id, ParameterType.GetOrPost));
 
-            return request.Execute<Asana.Task>(this);
+            return request.Execute<Task>(this);
         }
 
         /// <summary>
