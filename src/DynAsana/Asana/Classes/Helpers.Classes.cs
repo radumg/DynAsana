@@ -4,13 +4,13 @@ using System.Reflection;
 
 namespace Asana.Helpers
 {
-    public class SkipPropertyAttribute : Attribute
+    internal class SkipPropertyAttribute : Attribute
     {
     }
 
     internal static class TypeExtensions
     {
-        public static PropertyInfo[] GetFilteredProperties(this Type type)
+        internal static PropertyInfo[] GetFilteredProperties(this Type type)
         {
             return type.GetProperties().Where(prop => prop.GetCustomAttributes(typeof(SkipPropertyAttribute), true).Length == 0).ToArray();
         }
