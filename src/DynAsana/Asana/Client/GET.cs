@@ -100,15 +100,10 @@ namespace Asana
         /// Get all projects.
         /// </summary>
         /// <returns>Returns the compact project records for some filtered set of projects. Use one or more request parameters to filter the projects returned.</returns>
-        public List<Project> GetProjects(AsanaRequest request = null)
+        public List<Project> GetProjects()
         {
             string resource = "projects/";
-            if(request==null) request = new AsanaRequest(this, Method.GET, resource);
-            else
-            {
-                request.restRequest.Method = Method.GET;
-                request.restRequest.Resource = resource;
-            }
+            var request = new AsanaRequest(this, Method.GET, resource);
 
             return request.Execute<List<Project>>(this);
         }
@@ -205,15 +200,10 @@ namespace Asana
         /// Get all tasks.
         /// </summary>
         /// <returns>Returns the compact task records for some filtered set of tasks. Use one or more request parameters to filter the tasks returned.</returns>
-        public List<Task> GetTasks(AsanaRequest request = null)
+        public List<Task> GetTasks()
         {
             string resource = "tasks/";
-            if (request == null) request = new AsanaRequest(this, Method.GET, resource);
-            else
-            {
-                request.restRequest.Method = Method.GET;
-                request.restRequest.Resource = resource;
-            }
+            var request = new AsanaRequest(this, Method.GET, resource);
 
             return request.Execute<List<Task>>(this);
         }
@@ -254,15 +244,10 @@ namespace Asana
         /// Get all tags.
         /// </summary>
         /// <returns>Returns the compact tag records for some filtered set of tags. Use one or more request parameters to filter the tags returned.</returns>
-        public List<Tag> GetTags(AsanaRequest request = null)
+        public List<Tag> GetTags()
         {
             string resource = "tags/";
-            if (request == null) request = new AsanaRequest(this, Method.GET, resource);
-            else
-            {
-                request.restRequest.Method = Method.GET;
-                request.restRequest.Resource = resource;
-            }
+            var request = new AsanaRequest(this, Method.GET, resource);
 
             return request.Execute<List<Tag>>(this);
         }
@@ -311,16 +296,17 @@ namespace Asana
         /// <summary>
         /// Get all users.
         /// </summary>
+        /// <param name="workspaceId">(optional) The id of the workspace whose users to retrieve.</param>
         /// <returns>Returns the user records for all users in all workspaces and organizations accessible to the authenticated user. Accepts an optional workspace ID parameter.</returns>
-        public List<User> GetUsers(AsanaRequest request = null)
+        public List<User> GetUsers(string workspaceId = null)
         {
-            string resource = "users/";
-            if (request == null) request = new AsanaRequest(this, Method.GET, resource);
-            else
+            string resource = "";
+            if (Helpers.Classes.CheckId(workspaceId))
             {
-                request.restRequest.Method = Method.GET;
-                request.restRequest.Resource = resource;
+                resource = "workspace/" + workspaceId + "/users/";
             }
+            else resource = "users/";
+            var request = new AsanaRequest(this, Method.GET, resource);
 
             return request.Execute<List<User>>(this);
         }

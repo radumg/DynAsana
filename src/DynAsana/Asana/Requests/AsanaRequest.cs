@@ -10,9 +10,9 @@ namespace Asana
     /// <summary>
     /// Represents any request to the Asana API. Inherits from the RestSharp RestRequest class.
     /// </summary>
-    public class AsanaRequest
+    internal class AsanaRequest
     {
-        public TimeSpan TimeToComplete { get; private set; }
+        internal TimeSpan TimeToComplete { get; private set; }
         internal RestRequest restRequest { get; private set; }
         internal AsanaErrorResponse errorResponse;
 
@@ -23,7 +23,7 @@ namespace Asana
         /// <param name="method">The method to use. Ex : Method.GET, Method.POST, etc.</param>
         /// <param name="resource">(optional) The URL fragment for the resource targeted. Ex : "tasks/".
         /// Note : does not require leading slash.</param>
-        public AsanaRequest(Asana.Client client, Method method, string resource = null)
+        internal AsanaRequest(Asana.Client client, Method method, string resource = null)
         {
             /// The following sets the correct communication protocol, required as Asana API uses https.
             /// Otherwise, any request to API fails.
