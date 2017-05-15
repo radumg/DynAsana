@@ -29,9 +29,9 @@ A new category called `DynAsana` should appear in the Dynamo node library, but i
 DynAsana currently exposes a few nodes in Dynamo, in the `DynAsana` category, organised in a further 2 sub-categories :
 * Client
 * Classes
+* Authentication
 
-
-## Simple example
+## Simple examples
 The `samples` folder includes a few simple examples that show you how to :
 - retrieve a single task
 - retrieve a project
@@ -39,30 +39,28 @@ The `samples` folder includes a few simple examples that show you how to :
 - create a new task in a project
 
 Retrieve a single task :
-![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/11439624/23580567/2a0a5fea-00fc-11e7-82d1-5450e6ab1a2a.png)
+![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/)
 
 Retrieve a single project :
-![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/11439624/23580567/2a0a5fea-00fc-11e7-82d1-5450e6ab1a2a.png)
-
-Retrieve tasks in a project :
-![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/11439624/23580567/2a0a5fea-00fc-11e7-82d1-5450e6ab1a2a.png)
-
-Create a new task in a project :
-![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/11439624/23580567/2a0a5fea-00fc-11e7-82d1-5450e6ab1a2a.png)
-
+![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/)
 
 ## More complex example
-The `samples` folder also includes a more complex example that shows you how to create a new task in a specific project and then add a tag to it. The reason this is considered a more complex example is because execution is cascaded, requiring multiple GETs and multiple POSTs to achieve.
+The `samples` folder also includes more complex examples. The reason these are considered more complex examples is because execution is cascaded, requiring multiple GET and/or multiple POST operations to achieve.
 
-The definition is pictured below :
-![samples-postmessageswithicons](https://cloud.githubusercontent.com/assets/11439624/23580571/34206bc8-00fc-11e7-8f7b-469a9cc9f61c.png)
+#### Retrieve tasks in a project
+First retrieves projects from a workspace, then retrieves tasks in that specific project.
+![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/11439624/23580567/2a0a5fea-00fc-11e7-82d1-5450e6ab1a2a.png)
 
-Please remember to fill in your own API key, the one used in the samples has been deactivated.
+#### Create a new task in a workspace
+First retrieves a workspace, then creates a new task in that specific workspace.
+![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/)
+
+With all the samples, please remember to fill in your own API key, the one used in the samples has been deactivated.
 
 ## Client
 This subcategory implements a client for access to the Asana API.
 
-![client](https://cloud.githubusercontent.com/assets/11439624/23580535/b260cea2-00fb-11e7-8def-5cfc85005761.PNG)
+![client](https://cloud.githubusercontent.com/assets/)
 
 Please note each client requires a valid API key and the integration does not currently support OAuth, although this is planned for a future update. See the [Authentication]() section for details on setting the API key up.
 
@@ -70,19 +68,6 @@ Please note each client requires a valid API key and the integration does not cu
 This node creates a new Asana client. It takes in only 1 input :
 ```
 1. token - an OAuth token.
-
-```
-
-### PostWebhookMessage node
-This node will post a message to a Slack channel through a webhook, provided the following inputs :
-```
-1. SlackClient : a Slack client with a valid token that has a webhook configured
-```
-```
-2. text : the text to post as a message, supports all Slack formatting
-```
-```
-3. emoji : the emoji to use as the message image, as per Slack syntax ( :rocket: for example)
 ```
 
 ### Query nodes
@@ -94,38 +79,17 @@ This subcategory allows the creation of Asana objects which are used to interact
 - performing actions (bolt)
 - querying (?)
 
-![class](https://cloud.githubusercontent.com/assets/11439624/23580538/c75e2610-00fb-11e7-8456-ba3cc9d7d972.PNG)
+![classes](https://cloud.githubusercontent.com/assets/)
 
-### Initialising
-This node creates a new Webhok. It takes in a few inputs :
-```
-1. URL : the Slack URL to post to, in the form of 
-https://hooks.slack.com/services/{teamID}/B4AHCV22F/...
-```
-```
-2. Channel : the channel to post the message to, note that a valid existing channel's name is required otherwise sending messages will fail
-```
-```
-3. User : the name of the integration, equivalent to a user's name and displayed as message author
-```
-```
-4. EmojiIcon : the emoji to use as the message image, as per Slack syntax ( :rocket: for example)
-```
-```
-5. UrlIcon : a URL to an image to use as the message image. An image is used as icon only when the emoji input is invalid or an empty string. Requires the URL to an image hosted on the internet.
-```
+## Authentication
 
-### Post node
-This node is the one that actually posts the message to Slack. It requires 2 inputs :
-```
-1. Webhook : a pre-configure webhook, see node above
-```
-```
-2. text : the text to post as a message, supports all Slack formatting
-```
+This repository reads the Asana API key directly from an XML file called `keys.xml`. You'll notice this file is not provided in the repository, so you'll have to create your own from the sample one that is provided.
+1. Copy `keys.sample.xml` to `keys.xml`
+2. Replace the token with your Asana one.
 
-### Query nodes
-The query nodes, marked with `?` in Dynamo allow you to see the properties of a Webhook. Use these for troubleshooting and debugging.
+The token is the text between `<token>` and `</token>` and looks something like this : `Bearer 0/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`, where the `x` are a long string of alphanumeric characters. These `xxxx` characters represent the actual API key, see below how to obtain one.
+
+*Note* : to create a new API key, please visit the following URL whilst logged in to Asana : http://app.asana.com/-/account_api . Remember that the API key will not be visible after it's created, so copy/paste it somewhere safe & never post it online!
 
 ## Prerequisites
 
