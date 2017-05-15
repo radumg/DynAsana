@@ -1,13 +1,16 @@
 {
 "license": "AGPL-3.0",
 "file_hash": null,
-"name": "DynaSlack",
-"version": "2017.1.3",
-"description": "Slack Integration for Dynamo",
-"group": "",
+"name": "DynAsana",
+"version": "2017.1.1.0",
+"description": "Asana Integration for Dynamo",
+"group": "radugidei",
 "keywords": [
-"Slack",
-"DynaSlack",
+"Asana",
+"DynAsana",
+"task management",
+"web",
+"integration",
 ""
 ],
 "dependencies": [],
@@ -16,8 +19,8 @@
 "engine": "dynamo",
 "engine_metadata": "",
 "site_url": "www.radugidei.com",
-"repository_url": "www.github.com/radumg/DynaSlack",
+"repository_url": "www.github.com/radumg/DynAsana",
 "contains_binaries": true,
 "node_libraries": [
-"DynaSlack, Version=2017.1.3.5, Culture=neutral, PublicKeyToken=null"]
+"DynaSlack, Version=2017.1.1.0, Culture=neutral, PublicKeyToken=null"]
 }
