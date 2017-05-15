@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Xml;
+using DynamoServices;
 
 namespace Asana
 {
-    internal static class Authentication
+    public static class Authentication
     {
         public static readonly string xmlSettingsFile = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDi‌​rectory, "..\\..\\..\\DynAsana\\keys.xml"));
         public static string APIKEY

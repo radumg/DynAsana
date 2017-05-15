@@ -7,6 +7,7 @@ using System.Reflection;
 using Asana;
 using System.IO;
 using System.Xml;
+using Asana.Classes;
 
 /// <summary>
 /// Namespace used to host classes and methods used during debugging only, in the absence of proper unit tests
@@ -61,7 +62,7 @@ namespace Asana
             Console.ReadKey();
         }
 
-        internal static Asana.Task newTask()
+        internal static Task newTask()
         {
             var uploadTask = new Task();
             var proj = new Project() { Id = "200419949000730", Name = "software dev" };
