@@ -62,7 +62,7 @@ namespace Asana
         public List<Project> GetProjectsByWorkspace(string workspaceId)
         {
             if (!Helpers.Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
-            string resource = "workspace/" + workspaceId + "/projects/";
+            string resource = "workspaces/" + workspaceId + "/projects/";
             var request = new AsanaRequest(this, Method.GET, resource);
 
             return request.Execute<List<Project>>(this);
@@ -134,7 +134,7 @@ namespace Asana
         public List<Task> GetTasksByWorkspace(string workspaceId)
         {
             if (!Helpers.Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
-            string resource = "workspace/" + workspaceId + "/tasks/";
+            string resource = "workspaces/" + workspaceId + "/tasks/";
             var request = new AsanaRequest(this, Method.GET, resource);
 
             return request.Execute<List<Task>>(this);
@@ -234,7 +234,7 @@ namespace Asana
         public List<Tag> GetTagsByWorkspace(string workspaceId)
         {
             if (!Helpers.Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
-            string resource = "workspace/" + workspaceId + "/tags/";
+            string resource = "workspaces/" + workspaceId + "/tags/";
             var request = new AsanaRequest(this, Method.GET, resource);
 
             return request.Execute<List<Tag>>(this);
@@ -287,7 +287,7 @@ namespace Asana
         public List<User> GetUsersByWorkspace(string workspaceId)
         {
             if (!Helpers.Classes.CheckId(workspaceId)) throw new ArgumentException("Invalid workspace id.");
-            string resource = "workspace/" + workspaceId + "/users/";
+            string resource = "workspaces/" + workspaceId + "/users/";
             var request = new AsanaRequest(this, Method.GET, resource);
 
             return request.Execute<List<User>>(this);
@@ -303,7 +303,7 @@ namespace Asana
             string resource = "";
             if (Helpers.Classes.CheckId(workspaceId))
             {
-                resource = "workspace/" + workspaceId + "/users/";
+                resource = "workspaces/" + workspaceId + "/users/";
             }
             else resource = "users/";
             var request = new AsanaRequest(this, Method.GET, resource);

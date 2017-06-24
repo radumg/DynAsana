@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Asana.Classes;
+using System.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace Asana
 {
@@ -17,20 +19,39 @@ namespace Asana
         /// <returns>The createad task.</returns>
         public Task CreateTask(Task task)
         {
+            /// web requests can take a long time, so we validate data before POST and bail early if required
             if (task == null) throw new ArgumentException("Must supply a valid task.");
             if (task.Workspace == null) throw new ArgumentException("Must specify a workspace when creating a task.");
             if (Helpers.Classes.CheckId(task.Workspace.Id) == false) throw new ArgumentException("Invalid workspace id.");
+            if (task.Projects == null) throw new ArgumentException("Must specify a project when creating a task.");
+            task.Projects.ForEach(p =>
+                { if (Helpers.Classes.CheckId(p.Id) == false) throw new ArgumentException("Invalid project id."); }
+            );
+
 
             var request = new AsanaRequest(this, Method.POST, "tasks/");
 
-            var projects = new List<string>();
+            /// transformations are required from lists to comma-separated strings for projects & tags
+            var projects = string.Join(",", task.Projects.Select(p => p.Id).ToArray());
+            var tags = string.Join(",", task.Tags.Select(t => t.Id).ToArray());
 
-            request.restRequest.AddParameter("workspaces", task.Workspace.Id, ParameterType.GetOrPost);
-            request.restRequest.AddParameter("name", task.Name, ParameterType.GetOrPost);
-            task.Projects.ForEach(p => request.restRequest.AddParameter("projects", p.Id, ParameterType.GetOrPost));
-            request.restRequest.AddParameter("notes", task.Notes, ParameterType.GetOrPost);
-            request.restRequest.AddParameter("assignee", task.Assignee.Id, ParameterType.GetOrPost);
-            task.Tags.ForEach(t => request.restRequest.AddParameter("tags", t.Id, ParameterType.GetOrPost));
+            try
+            {
+                request.restRequest.AddParameter("workspaces", task.Workspace.Id, ParameterType.GetOrPost);
+                request.restRequest.AddParameter("name", task.Name, ParameterType.GetOrPost);
+                request.restRequest.AddParameter("projects", projects, ParameterType.GetOrPost);
+                request.restRequest.AddParameter("tags", tags, ParameterType.GetOrPost);
+                request.restRequest.AddParameter("notes", task.Notes, ParameterType.GetOrPost);
+                request.restRequest.AddParameter("assignee", task.Assignee.Id, ParameterType.GetOrPost);
+            }
+            catch (NullReferenceException e)
+            {
+                throw new Exception("One or more of the supplied parameters was missing.");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
 
             return request.Execute<Task>(this);
         }
@@ -68,6 +89,5 @@ namespace Asana
             }
             return parameters;
         }
-
     }
 }

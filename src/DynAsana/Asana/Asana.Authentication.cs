@@ -15,8 +15,7 @@ namespace Asana
             XmlDocument xml = new XmlDocument();
 
             if(string.IsNullOrEmpty(filePath) || string.IsNullOrWhiteSpace(filePath)) throw new FileNotFoundException("Supplied filepath is empty or null.");
-            if (!File.Exists(filePath)) throw new FileNotFoundException("Could not locate settings file to read API key.");
-
+            if (!File.Exists(filePath)) throw new FileNotFoundException("Could not locate settings file to read API key at :" + Environment.NewLine + filePath);
             try
             {
                 xml.Load(filePath);

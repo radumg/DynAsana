@@ -85,7 +85,7 @@ namespace Asana
                     if (error != null && !String.IsNullOrEmpty(error.Message))
                         errorMessage += "Error :" + error.Message + Environment.NewLine;
                 }
-                Console.WriteLine(errorMessage);
+                //Console.WriteLine(errorMessage);
                 throw new InvalidOperationException(errorMessage);
             }
 

@@ -100,19 +100,7 @@ namespace Asana.Classes
         #endregion
 
         /// <summary>
-        /// Create an Asana task
-        /// </summary>
-        /// <param name="name">The name of the task.</param>
-        /// <param name="description">The description of the task.</param>
-        public Task(string name, string description, Workspace workspace)
-        {
-            if (!String.IsNullOrEmpty(name) && !String.IsNullOrWhiteSpace(name)) this.Name = name;
-            if (!String.IsNullOrEmpty(description) && !String.IsNullOrWhiteSpace(description)) this.Name = name;
-            if (workspace != null && Helpers.Classes.CheckId(workspace.Id)) this.Workspace = workspace;
-        }
-
-        /// <summary>
-        /// Create an Asana task by specifying basic properties.
+        /// Create an Asana task by specifying basic properties & a few optional ones.
         /// </summary>
         /// <param name="name">The name of the task.</param>
         /// <param name="description">The description of the task. Relates to "notes" field in API.</param>
@@ -121,16 +109,16 @@ namespace Asana.Classes
         /// <param name="projects">The projects this task will be part of. Projects must be in same workspace as specified workspace.</param>
         /// <param name="tags">The tags to use on the task.</param>
         public Task(
-            string name, 
-            string description, 
-            Workspace workspace, 
-            User assignee=null, 
-            List<Project> projects=null, // in Asana API, projects parameter can be empty if a workspace is supplied
+            string name,
+            string description,
+            Workspace workspace,
+            User assignee = null,
+            List<Project> projects = null, // in Asana API, projects parameter can be empty if a workspace is supplied
             List<Tag> tags = null)
         {
             if (workspace != null && Helpers.Classes.CheckId(workspace.Id)) this.Workspace = workspace;
-            if (projects != null) projects.ForEach(p => { if (Helpers.Classes.CheckId(p.Id)) { this.Projects.Add(p); } });
-            if (tags != null) tags.ForEach(t => { if (Helpers.Classes.CheckId(t.Id)) { this.Tags.Add(t); } });
+            if (projects != null && projects.Count > 0) this.Projects = projects;
+            if (tags != null && tags.Count > 0) this.Tags = tags;
             if (Helpers.Classes.CheckFieldValue(name)) this.Name = name;
             if (Helpers.Classes.CheckFieldValue(description)) this.Notes = description;
             if (assignee != null && Helpers.Classes.CheckId(assignee.Id)) this.Assignee = assignee;
