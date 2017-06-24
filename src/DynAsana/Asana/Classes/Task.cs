@@ -131,14 +131,6 @@ namespace Asana.Classes
         {
         }
 
-        /// <summary>
-        /// Serializes the Slack message to JSON
-        /// </summary>
-        /// <returns></returns>
-        public string ToJSON()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
     }
 
 }

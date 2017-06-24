@@ -96,7 +96,7 @@ namespace Asana
 
             // make the task
             var uploadTask = new Task();
-            uploadTask = TaskByExtendedProperties(TaskName, Notes, Workspace, Assignee, projList, tagList);
+            uploadTask = new Task(TaskName, Notes, Workspace, Assignee, projList, tagList);
 
             Console.WriteLine();
             Console.WriteLine("Created a task to post to Asana ==============");

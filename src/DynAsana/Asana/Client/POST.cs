@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using Asana.Classes;
 using System.Linq;
-using Newtonsoft.Json.Linq;
 
 namespace Asana
 {
@@ -57,6 +56,42 @@ namespace Asana
         }
 
         /// <summary>
+        /// Create a new Asana project in a specified workspace.
+        /// </summary>
+        /// <param name="name">The name of the new project.</param>
+        /// <param name="workspaceID">The workspace to create the project in.</param>
+        /// <param name="description">(optional) The description of the project.</param>
+        /// <returns>The newly-created Asana Project object.</returns>
+        public Project CreateProject(string name, string workspaceID, string description = null)
+        {
+            /// web requests can take a long time, so we validate data before POST and bail early if required
+            if (String.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Must supply a name.");
+            if (Helpers.Classes.CheckId(workspaceID) == false) throw new ArgumentException("Must supply a valid workspace ID.");
+
+
+            var request = new AsanaRequest(this, Method.POST, "projects/");
+
+            try
+            {
+                request.restRequest.AddParameter("workspace", workspaceID, ParameterType.GetOrPost);
+                request.restRequest.AddParameter("name", name, ParameterType.GetOrPost);
+                request.restRequest.AddParameter("notes", description, ParameterType.GetOrPost);
+            }
+            catch (NullReferenceException e)
+            {
+                throw new Exception("One or more of the supplied parameters was missing.");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
+            return request.Execute<Project>(this);
+        }
+
+        #region Helpers
+
+        /// <summary>
         /// Gets only non-null properties from a Type. Also respects the [SkipProperty] attribute.
         /// </summary>
         /// <param name="obj">The object to extract type properties from.</param>
@@ -89,5 +124,6 @@ namespace Asana
             }
             return parameters;
         }
+        #endregion
     }
 }
