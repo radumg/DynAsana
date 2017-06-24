@@ -89,6 +89,40 @@ namespace Asana
             return request.Execute<Project>(this);
         }
 
+        /// <summary>
+        /// Create a new Asana Tag in a specified workspace.
+        /// </summary>
+        /// <param name="name">The name of the new project.</param>
+        /// <param name="workspaceID">The workspace to create the project in.</param>
+        /// <param name="colour">(optional) A colour to use for the tag, must be one of the standard Asana colours, in a string format.</param>
+        /// <returns>The newly-created Asana Tag object.</returns>
+        public Tag CreateTag(string name, string workspaceID, string colour = null)
+        {
+            /// web requests can take a long time, so we validate data before POST and bail early if required
+            if (String.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Must supply a name.");
+            if (Helpers.Classes.CheckId(workspaceID) == false) throw new ArgumentException("Must supply a valid workspace ID.");
+
+
+            var request = new AsanaRequest(this, Method.POST, "tags/");
+
+            try
+            {
+                request.restRequest.AddParameter("workspace", workspaceID, ParameterType.GetOrPost);
+                request.restRequest.AddParameter("name", name, ParameterType.GetOrPost);
+                request.restRequest.AddParameter("color", colour, ParameterType.GetOrPost);
+            }
+            catch (NullReferenceException e)
+            {
+                throw new Exception("One or more of the supplied parameters was missing.");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
+            return request.Execute<Tag>(this);
+        }
+
         #region Helpers
 
         /// <summary>
