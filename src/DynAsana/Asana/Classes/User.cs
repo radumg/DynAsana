@@ -1,13 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Asana.Classes
+namespace Asana
 {
     /// <summary>
     /// Class represents an Asana user.
     /// See API structure at https://asana.com/developers/api-reference/users
     /// </summary>
-    public class User
+    public partial class User
     {
         [JsonProperty("id")]
         public string Id { get; set; }

@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace Asana.Classes
+namespace Asana
 {
     /// <summary>
     /// Class represents an Asana project.
     /// See API structure at https://asana.com/developers/api-reference/projects
     /// </summary>
-    public class Project
+    public partial class Project
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -29,7 +29,7 @@ namespace Asana.Classes
     /// Class represents an Asana section.
     /// See API structure at https://asana.com/developers/api-reference/sections
     /// </summary>
-    public class Section
+    public partial class Section
     {
         [JsonProperty("id")]
         public string Id { get; set; }

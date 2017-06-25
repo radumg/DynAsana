@@ -1,13 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Asana.Classes
+namespace Asana
 {
     /// <summary>
     /// Class represents an Asana tag.
     /// See API structure at https://asana.com/developers/api-reference/tags
     /// </summary>
-    public class Tag
+    public partial class Tag
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -30,10 +30,17 @@ namespace Asana.Classes
         [JsonProperty("workspace")]
         public Workspace Workspace { get; set; }
 
+        /// <summary>
+        /// Create an offline Tag object
+        /// </summary>
         public Tag()
         {
         }
 
+        /// <summary>
+        /// Create an offline Tag
+        /// </summary>
+        /// <param name="id"></param>
         public Tag(string id)
         {
             if (Helpers.Classes.CheckId(id)) this.Id = id;

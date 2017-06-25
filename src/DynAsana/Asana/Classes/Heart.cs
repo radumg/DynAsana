@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Asana.Classes
+namespace Asana
 {
     /// <summary>
     /// Class represents an Asana heart.
