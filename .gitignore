@@ -5,9 +5,9 @@
 keys.xml
 
 # Debug project
-/DebugApp/Debug/*
-/DebugApp/bin/*
-/DebugApp/obj/*
+/DebugApp/Debug/
+/DebugApp/bin/
+/DebugApp/obj/
 
 # User-specific files
 *.suo

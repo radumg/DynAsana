@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Linq;
 using System.Reflection;
 
@@ -16,14 +17,14 @@ namespace Asana.Helpers
         }
     }
 
-    internal static class Classes
+    public static class Classes
     {
         /// <summary>
         /// Checks whether a field is a valid string
         /// </summary>
         /// <param name="value">The value to check</param>
         /// <returns>True if the value is not null/empty, false otherwise.</returns>
-        internal static Boolean CheckFieldValue(string value)
+        public static Boolean CheckFieldValue(string value)
         {
             if (String.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value)) return false;
             return true;
@@ -34,11 +35,22 @@ namespace Asana.Helpers
         /// </summary>
         /// <param name="Id">The id to check</param>
         /// <returns>True if Id seems valid, false otherwise.</returns>
-        internal static Boolean CheckId(string Id)
+        public static Boolean CheckId(string Id)
         {
             if (String.IsNullOrEmpty(Id) || string.IsNullOrWhiteSpace(Id)) return false;
             if (!long.TryParse(Id, out var id)) return false;
             return true;
         }
+
+        /// <summary>
+        /// Serializes any object to JSON, useful for debugging purposes
+        /// </summary>
+        /// <returns>The JSON-formatted string</returns>
+        public static string ToJSON(object obj)
+        {
+            return JsonConvert.SerializeObject(obj);
+        }
+
+
     }
 }

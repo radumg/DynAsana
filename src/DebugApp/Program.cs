@@ -20,6 +20,7 @@ namespace Asana
         private static void Main(string[] args)
         {
             // build a new Slack client object
+            Asana.Authentication.GetKeyFromXMLFile(Asana.Authentication.DefaultXMLPath);
             var asanaClient = new Asana.Client(Asana.Authentication.APIKEY);
             Console.WriteLine("Created a new Asana client ========");
             Console.WriteLine("Token : " + asanaClient.Token);
@@ -50,12 +51,22 @@ namespace Asana
             Console.WriteLine();
             Console.WriteLine("POST a task to Asana ==============");
             var nt = newTask();
-            var createdTask = asanaClient.CreateTask(nt);
-            Console.WriteLine("Id   : " + createdTask.Id);
-            Console.WriteLine("Name : " + createdTask.Name);
-            Console.Write("Projects : "); createdTask.Projects.ForEach(p => Console.Write(p.Name + ", ")); Console.WriteLine();
-            Console.Write("Tags : "); createdTask.Tags.ForEach(t => Console.Write(t.Name + ", ")); Console.WriteLine();
-            Console.WriteLine();
+            try
+            {
+                var createdTask = asanaClient.CreateTask(nt);
+                Console.WriteLine("Id   : " + createdTask.Id);
+                Console.WriteLine("Name : " + createdTask.Name);
+                Console.Write("Projects : "); createdTask.Projects.ForEach(p => Console.Write(p.Name + ", ")); Console.WriteLine();
+                Console.Write("Tags : "); createdTask.Tags.ForEach(t => Console.Write(t.Name + ", ")); Console.WriteLine();
+                Console.WriteLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Could not POST to Asana, error : ==============");
+                Console.WriteLine(e.Message);
+                throw;
+            }
 
             // wait before closing the window
             Console.WriteLine("Press any key to exit now...");
@@ -64,31 +75,39 @@ namespace Asana
 
         internal static Task newTask()
         {
-            var uploadTask = new Task();
-            var proj = new Project() { Id = "200419949000730", Name = "software dev" };
-            var proj2 = new Project() { Id = "325561650959818", Name = "bim general" };
+            // workspace & projects
+            var Workspace = new Workspace("198488041683503"); // grimshaw.global
             var projList = new List<Project>();
-            projList.Add(proj);
-            projList.Add(proj2);
-            uploadTask.Projects = projList;
-            uploadTask.Workspace = new Workspace() { Id = "198488041683503" };
-            uploadTask.Assignee = new User() { Id = "198487209472854" };
-            uploadTask.Name = "New task created at " + DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
-            uploadTask.Notes = "This is a task created from the API." + Environment.NewLine +
+            projList.Add(new Project("200419949000730")); // BIM | Development
+            projList.Add(new Project("207845234365369")); // BIM | Management);
+
+            var Assignee = new User("198487209472854"); // radu.gidei
+
+            // Name & description
+            var TaskName = "New task created at " + DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
+            var Notes = "This is a task created from the API." + Environment.NewLine +
                 "It belongs to 2 separate projects (software dev & bim general)." + Environment.NewLine +
                 "It also has 2 tags (Dyn, Konrad)";
-            var tag = new Tag() { Id = "204494482735923", Name= "DYN" };
-            var tag2 = new Tag() { Id = "198900482693477", Name="Konrad" };
+
+            // tags
             var tagList = new List<Tag>();
-            tagList.Add(tag);
-            tagList.Add(tag2);
-            uploadTask.Tags = tagList;
+            tagList.Add(new Tag("204494482735923")); // DYN);
+            tagList.Add(new Tag("198900482693477")); // Konrad);
+
+            // make the task
+            var uploadTask = new Task();
+            uploadTask = new Task(TaskName, Notes, Workspace, Assignee, projList, tagList);
+
+            Console.WriteLine();
+            Console.WriteLine("Created a task to post to Asana ==============");
+            Dump(uploadTask);
+
             return uploadTask;
         }
 
         public static void Dump(object obj)
         {
-            Console.WriteLine("~~~~~~ "+ obj.ToString() + "~~~~~~ ");
+            Console.WriteLine("~~~~~~ " + obj.ToString() + "~~~~~~ ");
             Console.WriteLine(JObject.FromObject(obj).ToString());
             Console.WriteLine("~~~~~~~~~~~~~ ");
         }
