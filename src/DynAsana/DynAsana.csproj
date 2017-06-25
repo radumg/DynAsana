@@ -55,14 +55,14 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <StartAction>Program</StartAction>
     <StartProgram>$(ProgramW6432)\Autodesk\Revit Copernicus\Revit.exe</StartProgram>
     <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\Release\Asana.xml</DocumentationFile>
+    <DocumentationFile>bin\DynAsana.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>
@@ -76,7 +76,7 @@
     </StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyName>Asana</AssemblyName>
+    <AssemblyName>DynAsana</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoServices, Version=1.3.0.961, Culture=neutral, processorArchitecture=MSIL">
@@ -109,7 +109,7 @@
     <Compile Include="Asana\Classes\Project.cs" />
     <Compile Include="Asana\Classes\User.cs" />
     <Compile Include="Asana\Classes\Heart.cs" />
-    <Compile Include="Asana\Classes\Helpers.Classes.cs" />
+    <Compile Include="Helpers\Helpers.Classes.cs" />
     <Compile Include="Asana\Client\GET.cs" />
     <Compile Include="Asana\Client\POST.cs" />
     <Compile Include="Asana\Client\DELETE.cs" />
@@ -121,13 +121,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Web\Helpers.Web.cs" />
+    <Compile Include="Helpers\Helpers.Web.cs" />
     <Compile Include="Asana\Classes\Task.cs" />
     <Compile Include="Asana\Client\AsanaClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asana\Asana.Authentication.cs" />
+    <Compile Include="Asana\Classes\Authentication.cs" />
     <None Include="app.config" />
     <None Include="pkg.json" />
     <None Include="Properties\Settings.settings">

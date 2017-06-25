@@ -8,11 +8,11 @@ using System.Reflection;
 namespace Asana
 {
     /// <summary>
-    /// Represents any request to the Asana API. Inherits from the RestSharp RestRequest class.
+    /// Represents any request to the Asana API. Encapsulates the RestSharp RestRequest class.
     /// </summary>
     internal class AsanaRequest
     {
-        internal TimeSpan TimeToComplete { get; private set; }
+        internal TimeSpan timeToComplete { get; private set; }
         internal RestRequest restRequest { get; private set; }
         internal AsanaErrorResponse errorResponse;
 
@@ -26,13 +26,13 @@ namespace Asana
         internal AsanaRequest(Asana.Client client, Method method, string resource = null)
         {
             /// The following sets the correct communication protocol, required as Asana API uses https.
-            /// Otherwise, any request to API fails.
+            /// Otherwise, any request to API fail, irrespective of using RestSharp or System.Web
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             this.restRequest = new RestRequest();
             this.restRequest.AddHeader("Authorization", client.Token);
             this.restRequest.AddHeader("content-type", "application/x-www-form-urlencoded");
-     
+
             /// The following headers are not required by useful.
             /// Asana-Fast-Api uses the beta version of the new (2017) Asana API, designed to be faster
             /// cache-control encourages system not to cache requests and fetch new results every time
@@ -41,6 +41,8 @@ namespace Asana
             this.restRequest.AddHeader("cache-control", "no-cache");
             this.restRequest.AddHeader("DynAsana-token", Assembly.GetExecutingAssembly().GetType().GUID.ToString());
 
+            /// The properties below point each request to the appropriate (supplied) endpoint
+            /// This abstraction allows re-use of the AsanaRequest class for all endpoints and all methods (GET, POST, etc).
             this.restRequest.Resource = resource;
             this.restRequest.Method = method;
         }
@@ -55,8 +57,12 @@ namespace Asana
         {
             var startTime = DateTime.Now;
             var response = client.restClient.Execute(this.restRequest);
-            this.TimeToComplete = DateTime.Now - startTime;
-            Console.WriteLine("Request took " + TimeToComplete.TotalMilliseconds.ToString() + "ms");
+            this.timeToComplete = DateTime.Now - startTime;
+            Console.WriteLine("Asana [" + this.restRequest.Method.ToString() + "] request to [" + this.restRequest.Resource + "] took " + timeToComplete.TotalMilliseconds.ToString() + "ms");
+
+            /// For legibility and future-proofing, deserialisation is de-coupled from the execution of the request
+            /// Currently, they are daisy-chained but they might be decoupled at a later date if required.
+            /// Note the JsonTokenOverride is supplied here, but globally set in the Client class
             return Deserialize<T>(response, client.JsonTokenOverride);
         }
 
@@ -70,27 +76,29 @@ namespace Asana
         /// <returns>The supplied response from Asana API, deserialized as the supplied type.</returns>
         internal T Deserialize<T>(IRestResponse response, string JsonToken = null) where T : new()
         {
-            /// We first need to check there is something to serialise.
+            /// We first need to check there is something to serialise
             /// If Asana didn't return a success code, we parse the error message instead of deserialising.
             /// Successful web response codes are in the 100 and 200 series. Larger numbers indicate warnings or errors.
             if (Helpers.Web.ServerReturnedSuccessfulResponse(response) == false)
             {
+                /// See AsanaResponse.cs for the class definitions of the error responses
                 this.errorResponse = JsonConvert.DeserializeObject<AsanaErrorResponse>(response.Content);
 
                 /// The Asana API is capable of returning multiple errors
-                /// We need to parse each one and record its error message.
+                /// We need to parse each one and record its error message
+                /// ForEach loop is inefficient here but more legible, will likely change later on
                 string errorMessage = "";
                 foreach (var error in errorResponse.Errors)
                 {
                     if (error != null && !String.IsNullOrEmpty(error.Message))
-                        errorMessage += "Error :" + error.Message + Environment.NewLine;
+                        errorMessage += "Asana Response Error :" + error.Message + Environment.NewLine;
                 }
-                //Console.WriteLine(errorMessage);
+                Console.WriteLine(errorMessage);
                 throw new InvalidOperationException(errorMessage);
             }
 
             /// Because Asana wraps all responses in a "data{}" object in JSON,
-            /// we then need to check if the client has a Json token override.
+            /// we need to check if the client has a Json token override.
             /// Specifying this at client level will allow simultaneous usage of different Asana API versions should this change.
             /// This could be achieved with RestSharps's Request.RootElement but i've not had consistent results with that.
             string taskData = "";
@@ -110,6 +118,20 @@ namespace Asana
             return JsonConvert.DeserializeObject<T>(taskData, settings);
         }
 
-    }
+        internal string WrapObject(object asanaObj)
+        {
+            return Helpers.Classes.ToJSON(new AsanaWrapper(asanaObj));
+        }
 
+        internal class AsanaWrapper
+        {
+            [JsonProperty("data")]
+            internal object wrappedObject { get; set; }
+
+            internal AsanaWrapper(object asanaObj)
+            {
+                this.wrappedObject = asanaObj;
+            }
+        }
+    }
 }

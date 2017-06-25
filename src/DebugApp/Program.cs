@@ -7,7 +7,6 @@ using System.Reflection;
 using Asana;
 using System.IO;
 using System.Xml;
-using Asana.Classes;
 
 /// <summary>
 /// Namespace used to host classes and methods used during debugging only, in the absence of proper unit tests
@@ -20,8 +19,8 @@ namespace Asana
         private static void Main(string[] args)
         {
             // build a new Slack client object
-            Asana.Authentication.GetKeyFromXMLFile(Asana.Authentication.DefaultXMLPath);
-            var asanaClient = new Asana.Client(Asana.Authentication.APIKEY);
+            Asana.Authentication.GetTokenFromXMLFile(Asana.Authentication.DefaultXMLPath);
+            var asanaClient = new Asana.Client(Asana.Authentication.APItoken);
             Console.WriteLine("Created a new Asana client ========");
             Console.WriteLine("Token : " + asanaClient.Token);
             Console.WriteLine("BaseUrl : " + asanaClient.BaseUrl);
@@ -29,7 +28,7 @@ namespace Asana
 
             // GET the current user from Asana
             Console.WriteLine("Current user ======================");
-            var user = asanaClient.GetUserBySession();
+            var user = User.GetBySession(asanaClient);
             Console.WriteLine("Id   : " + user.Id);
             Console.WriteLine("Name : " + user.Name);
             Console.WriteLine("Id   : " + user.Email);
@@ -39,7 +38,7 @@ namespace Asana
 
             // GET a task from Asana
             Console.WriteLine("GET a task from Asana =============");
-            var task = asanaClient.GetTaskById("314317576360056");
+            var task = Task.GetById(asanaClient,"314317576360056");
             // Access deserialised properties
             Console.WriteLine("Id   : " + task.Id);
             Console.WriteLine("Name : " + task.Name);
@@ -53,7 +52,7 @@ namespace Asana
             var nt = newTask();
             try
             {
-                var createdTask = asanaClient.CreateTask(nt);
+                var createdTask = Task.CreateTask(asanaClient,nt);
                 Console.WriteLine("Id   : " + createdTask.Id);
                 Console.WriteLine("Name : " + createdTask.Name);
                 Console.Write("Projects : "); createdTask.Projects.ForEach(p => Console.Write(p.Name + ", ")); Console.WriteLine();
@@ -86,7 +85,7 @@ namespace Asana
             // Name & description
             var TaskName = "New task created at " + DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
             var Notes = "This is a task created from the API." + Environment.NewLine +
-                "It belongs to 2 separate projects (software dev & bim general)." + Environment.NewLine +
+                "It belongs to 2 separate projects (BIM | Development & BIM | Management)." + Environment.NewLine +
                 "It also has 2 tags (Dyn, Konrad)";
 
             // tags
@@ -96,7 +95,7 @@ namespace Asana
 
             // make the task
             var uploadTask = new Task();
-            uploadTask = new Task(TaskName, Notes, Workspace, Assignee, projList, tagList);
+            uploadTask = new Task(TaskName, Notes, Workspace, projList, Assignee, tagList);
 
             Console.WriteLine();
             Console.WriteLine("Created a task to post to Asana ==============");

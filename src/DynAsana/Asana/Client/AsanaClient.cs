@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
-using Asana.Classes;
 
 namespace Asana
 {
@@ -16,9 +15,10 @@ namespace Asana
         public string Token { get; internal set; }
         public string JsonTokenOverride { get; set; }
 
-        public Workspace Workspace;
-        public List<Project> Projects;
-        public User CurrentUser;
+        // TODO : enable support for caching
+        //public Workspace Workspace;
+        //public List<Project> Projects;
+        //public User CurrentUser;
 
         internal RestClient restClient;
 

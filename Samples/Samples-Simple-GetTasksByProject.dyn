@@ -1,17 +1,14 @@
-<Workspace Version="1.3.0.875" X="29.6656029312746" Y="111.698605347376" zoom="0.544250143026794" ScaleFactor="1" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
+<Workspace Version="1.3.0.875" X="49.8749672419473" Y="117.910058638357" zoom="0.585628870700867" ScaleFactor="1" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="False">
   <NamespaceResolutionMap />
   <Elements>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="39426853-1319-430f-b804-7d8f35e7382b" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Client.Client" x="404.442616796095" y="357.40117594428" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAsana\bin\Release\Asana.dll" function="Asana.Client.Client@string">
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="39426853-1319-430f-b804-7d8f35e7382b" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Client.Client" x="404.442616796095" y="357.40117594428" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAsana\bin\DynAsana.dll" function="Asana.Client.Client@string">
       <PortInfo index="0" default="False" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
     <CoreNodeModels.Input.StringInput guid="22e80a7d-6929-4e53-9586-a455e503601e" type="CoreNodeModels.Input.StringInput" nickname="String" x="319.960057610266" y="579.065459011355" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
-      <System.String>xxxxxxxxxxxxxxxxx</System.String>
-      <System.String value="xxxxxxxxxxxxxxxxx" />
+      <System.String>207845234365369</System.String>
+      <System.String value="207845234365369" />
     </CoreNodeModels.Input.StringInput>
-    <CoreNodeModels.Watch guid="092be13f-6cb5-4131-95a0-e3d381cdf625" type="CoreNodeModels.Watch" nickname="Watch" x="1368.13149920996" y="662.163049704452" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-    </CoreNodeModels.Watch>
-    <CoreNodeModels.Watch guid="67352b9f-f7be-473a-aa68-f051335e4ca0" type="CoreNodeModels.Watch" nickname="Watch" x="1366.91921996698" y="289.124023394094" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+    <CoreNodeModels.Watch guid="67352b9f-f7be-473a-aa68-f051335e4ca0" type="CoreNodeModels.Watch" nickname="Watch" x="1367.6541761358" y="367.253636212846" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
     </CoreNodeModels.Watch>
     <CoreNodeModels.Watch guid="3fa9fcf9-cc4a-4bdf-b0f6-8220e07c2bad" type="CoreNodeModels.Watch" nickname="Watch" x="1366.91921996698" y="-80.5432129070495" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
@@ -24,60 +21,55 @@
     <CoreNodeModels.Watch guid="e617f928-7a05-4e55-95f1-d9daba5300fc" type="CoreNodeModels.Watch" nickname="Watch" x="1580.75186320401" y="-80.3097636192263" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
     </CoreNodeModels.Watch>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="8f79054d-88d4-4906-9dab-e4457088f15e" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Client.GetTasksByProject" x="689.750635884074" y="367.253636212846" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="..\src\DynAsana\bin\Release\Asana.dll" function="Asana.Client.GetTasksByProject@string">
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="5d62f0a4-113f-4e67-b52b-f9a327006c41" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1102.65821260031" y="3.42271463798119" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="task.Id;" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <CoreNodeModels.Watch guid="e1a4a955-7ccd-4c26-a4f4-f70b4ac77025" type="CoreNodeModels.Watch" nickname="Watch" x="1592.48143747104" y="1049.31325203743" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="ad2db3d8-8b7c-495c-8916-67582a747617" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Task.Id" x="1102.65821260031" y="-85.4590726243061" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAsana\bin\DynAsana.dll" function="Asana.Task.Id">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e4da6398-eada-40d5-bff1-bea06ce615fc" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Task.Name" x="1103.39316876913" y="367.253636212846" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAsana\bin\DynAsana.dll" function="Asana.Task.Name">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="01068703-d04e-4aff-a0f7-3da4117ebc85" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Task.Tags" x="1102.65821260031" y="1049.31325203743" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAsana\bin\DynAsana.dll" function="Asana.Task.Tags">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="842e38db-d6a7-4cff-94fb-eb27fa335644" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Task.Notes" x="1102.65821260031" y="648.762140029243" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAsana\bin\DynAsana.dll" function="Asana.Task.Notes">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.Watch guid="092be13f-6cb5-4131-95a0-e3d381cdf625" type="CoreNodeModels.Watch" nickname="Watch" x="1366.91921996698" y="648.762140029243" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e58884a1-c511-4e6e-8d2a-6c948b0d9d7e" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Tag.Name" x="1309.91585220822" y="1049.31325203743" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAsana\bin\DynAsana.dll" function="Asana.Tag.Name">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="5bead106-486b-437a-ba50-8e3aa922a943" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Task.GetByProject" x="623.222795987528" y="353.844196969115" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAsana\bin\DynAsana.dll" function="Asana.Task.GetByProject@var,string">
       <PortInfo index="0" default="False" />
       <PortInfo index="1" default="False" />
     </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="969e2034-6849-4369-b757-411e0643a6cf" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Task.Id" x="1106.13398509624" y="-78.4423654720215" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAsana\bin\Release\Asana.dll" function="Asana.Classes.Task.Id">
-      <PortInfo index="0" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="5d62f0a4-113f-4e67-b52b-f9a327006c41" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1106.13398509624" y="3.42271463798119" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="task.Id;" ShouldFocus="false">
-      <PortInfo index="0" default="False" />
-    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="f70c5731-a4d6-4897-aa0c-4883d89e1ce7" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Task.Name" x="1106.13398509624" y="290.492314356166" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAsana\bin\Release\Asana.dll" function="Asana.Classes.Task.Name">
-      <PortInfo index="0" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e5e4d923-b753-4560-9952-efd8e21968f8" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Task.Notes" x="1106.13398509624" y="662.163049704452" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAsana\bin\Release\Asana.dll" function="Asana.Classes.Task.Notes">
-      <PortInfo index="0" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="7c0da370-5c83-4646-8c04-56cad9b484d1" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Task.Tags" x="1106.13398509624" y="1050.08979994907" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAsana\bin\Release\Asana.dll" function="Asana.Classes.Task.Tags">
-      <PortInfo index="0" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="33e2b682-df16-4e7f-affa-59e7b98d87a5" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Tag.Name" x="1367.52535958847" y="1050.08979994907" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAsana\bin\Release\Asana.dll" function="Asana.Classes.Tag.Name">
-      <PortInfo index="0" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="83ff9a7e-3cc2-45e2-84a4-e0a08e568bfd" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Tag.Color" x="1368.13149920996" y="1148.12571307488" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAsana\bin\Release\Asana.dll" function="Asana.Classes.Tag.Color">
-      <PortInfo index="0" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <CoreNodeModels.Watch guid="f512b4ef-0e6e-476b-93b9-8dff163b5e30" type="CoreNodeModels.Watch" nickname="Watch" x="1806.31408070807" y="1050.08979994907" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-    </CoreNodeModels.Watch>
-    <CoreNodeModels.Watch guid="e1a4a955-7ccd-4c26-a4f4-f70b4ac77025" type="CoreNodeModels.Watch" nickname="Watch" x="1592.48143747104" y="1050.08979994907" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-    </CoreNodeModels.Watch>
   </Elements>
   <Connectors>
-    <Dynamo.Graph.Connectors.ConnectorModel start="39426853-1319-430f-b804-7d8f35e7382b" start_index="0" end="8f79054d-88d4-4906-9dab-e4457088f15e" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="22e80a7d-6929-4e53-9586-a455e503601e" start_index="0" end="8f79054d-88d4-4906-9dab-e4457088f15e" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="39426853-1319-430f-b804-7d8f35e7382b" start_index="0" end="5bead106-486b-437a-ba50-8e3aa922a943" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="22e80a7d-6929-4e53-9586-a455e503601e" start_index="0" end="5bead106-486b-437a-ba50-8e3aa922a943" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="de3604c5-7945-4e6a-b076-7403cf6eb364" start_index="0" end="39426853-1319-430f-b804-7d8f35e7382b" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="8f79054d-88d4-4906-9dab-e4457088f15e" start_index="0" end="969e2034-6849-4369-b757-411e0643a6cf" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="8f79054d-88d4-4906-9dab-e4457088f15e" start_index="0" end="5d62f0a4-113f-4e67-b52b-f9a327006c41" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="8f79054d-88d4-4906-9dab-e4457088f15e" start_index="0" end="f70c5731-a4d6-4897-aa0c-4883d89e1ce7" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="8f79054d-88d4-4906-9dab-e4457088f15e" start_index="0" end="e5e4d923-b753-4560-9952-efd8e21968f8" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="8f79054d-88d4-4906-9dab-e4457088f15e" start_index="0" end="7c0da370-5c83-4646-8c04-56cad9b484d1" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="969e2034-6849-4369-b757-411e0643a6cf" start_index="0" end="3fa9fcf9-cc4a-4bdf-b0f6-8220e07c2bad" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="5d62f0a4-113f-4e67-b52b-f9a327006c41" start_index="0" end="e617f928-7a05-4e55-95f1-d9daba5300fc" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="f70c5731-a4d6-4897-aa0c-4883d89e1ce7" start_index="0" end="67352b9f-f7be-473a-aa68-f051335e4ca0" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="e5e4d923-b753-4560-9952-efd8e21968f8" start_index="0" end="092be13f-6cb5-4131-95a0-e3d381cdf625" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="7c0da370-5c83-4646-8c04-56cad9b484d1" start_index="0" end="33e2b682-df16-4e7f-affa-59e7b98d87a5" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="7c0da370-5c83-4646-8c04-56cad9b484d1" start_index="0" end="83ff9a7e-3cc2-45e2-84a4-e0a08e568bfd" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="33e2b682-df16-4e7f-affa-59e7b98d87a5" start_index="0" end="e1a4a955-7ccd-4c26-a4f4-f70b4ac77025" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="83ff9a7e-3cc2-45e2-84a4-e0a08e568bfd" start_index="0" end="f512b4ef-0e6e-476b-93b9-8dff163b5e30" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ad2db3d8-8b7c-495c-8916-67582a747617" start_index="0" end="3fa9fcf9-cc4a-4bdf-b0f6-8220e07c2bad" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e4da6398-eada-40d5-bff1-bea06ce615fc" start_index="0" end="67352b9f-f7be-473a-aa68-f051335e4ca0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="01068703-d04e-4aff-a0f7-3da4117ebc85" start_index="0" end="e58884a1-c511-4e6e-8d2a-6c948b0d9d7e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="842e38db-d6a7-4cff-94fb-eb27fa335644" start_index="0" end="092be13f-6cb5-4131-95a0-e3d381cdf625" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e58884a1-c511-4e6e-8d2a-6c948b0d9d7e" start_index="0" end="e1a4a955-7ccd-4c26-a4f4-f70b4ac77025" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5bead106-486b-437a-ba50-8e3aa922a943" start_index="0" end="5d62f0a4-113f-4e67-b52b-f9a327006c41" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5bead106-486b-437a-ba50-8e3aa922a943" start_index="0" end="ad2db3d8-8b7c-495c-8916-67582a747617" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5bead106-486b-437a-ba50-8e3aa922a943" start_index="0" end="e4da6398-eada-40d5-bff1-bea06ce615fc" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5bead106-486b-437a-ba50-8e3aa922a943" start_index="0" end="01068703-d04e-4aff-a0f7-3da4117ebc85" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5bead106-486b-437a-ba50-8e3aa922a943" start_index="0" end="842e38db-d6a7-4cff-94fb-eb27fa335644" end_index="0" portType="0" />
   </Connectors>
   <Notes>
     <Dynamo.Graph.Notes.NoteModel guid="a7fa5a16-9c2b-4087-bbfc-ad59ff4d3964" text="Replace below with your Asana API key." x="166.797863205979" y="319.190069864148" />
     <Dynamo.Graph.Notes.NoteModel guid="9caa50d2-bb44-4a6d-9a37-608f76e9a0a7" text="Replace below with an Asana project ID. This can easily be found by looking at the middle portion of the URL in the browser when viewing a task in the Asana web application or using the GetProjects nodes." x="165.901307881441" y="483.904176761127" />
-    <Dynamo.Graph.Notes.NoteModel guid="06c3a398-c5be-4c83-a9cf-ae85fa362b70" text="The integration returns Asana objects which need to be deconstructed to access their properties.&#xD;&#xA;Note : also works with DesignScript." x="1106.13398509624" y="-150.112234960596" />
+    <Dynamo.Graph.Notes.NoteModel guid="06c3a398-c5be-4c83-a9cf-ae85fa362b70" text="The integration returns Asana objects which need to be deconstructed to access their properties.&#xD;&#xA;Note : also works with DesignScript." x="1102.65821260031" y="-150.112234960596" />
   </Notes>
   <Annotations />
   <Presets />

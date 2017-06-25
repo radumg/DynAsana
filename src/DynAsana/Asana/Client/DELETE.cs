@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Asana
 {
-    public partial class Client
+    public partial class Task
     {
     }
 }

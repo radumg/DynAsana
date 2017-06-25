@@ -1,0 +1,26 @@
+{
+"license": "AGPL-3.0",
+"file_hash": null,
+"name": "DynAsana",
+"version": "2017.1.1.0",
+"description": "Asana Integration for Dynamo",
+"group": "radugidei",
+"keywords": [
+"Asana",
+"DynAsana",
+"task management",
+"web",
+"integration",
+""
+],
+"dependencies": [],
+"contents": "",
+"engine_version": "1.2.1.3083",
+"engine": "dynamo",
+"engine_metadata": "",
+"site_url": "www.radugidei.com",
+"repository_url": "www.github.com/radumg/DynAsana",
+"contains_binaries": true,
+"node_libraries": [
+"DynaSlack, Version=2017.1.1.0, Culture=neutral, PublicKeyToken=null"]
+}
