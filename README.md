@@ -36,6 +36,9 @@ There are a few exceptions, namely :
 
 These 3 classes are part of the integration and do not represent actual Asana objects.
 
+![dynasana](https://user-images.githubusercontent.com/11439624/27520915-36358b86-5a0d-11e7-9a1a-f34b370bc8d6.PNG)
+
+
 ## Class structure
 As mentioned, each class represents an Asana object, for example `Tags`.
 
@@ -43,6 +46,8 @@ This structure allows the creation of Asana objects which are used to interact w
 - creating new objects `(+)`
 - performing actions `(bolt)`
 - querying `(?)`
+
+![Structure](https://user-images.githubusercontent.com/11439624/27520902-073c9fcc-5a0d-11e7-88e8-83e032f91ef1.PNG)
 
 ### Create an object
 To create a tag for example, use nodes in the `+` section.
@@ -82,26 +87,26 @@ The `samples` folder includes a few simple examples that show you how to :
 - retrieve all projects
 
 Retrieve a single task :
-![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/)
+![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/documentation/Samples/Samples-Simple-GetTaskById.png)
 
-Retrieve a single project :
-![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/)
+Retrieve projects :
+![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/documentation/Samples/Samples-Simple-GetProjects.png)
 
 #### Retrieve tasks in a project
 First retrieves projects from a workspace, then retrieves tasks in that specific project.
-![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/11439624/23580567/2a0a5fea-00fc-11e7-82d1-5450e6ab1a2a.png)
+![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/documentation/Samples/Samples-Simple-GetTasksByProject.png)
 
-#### Create a new task in a workspace
-First retrieves a workspace, then creates a new task in that specific workspace.
-![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/)
-
-With all the samples, please remember to fill in your own API key, the one used in the samples has been deactivated.
+With all the samples, please remember to fill in your own API key, the one used in the samples is invalid or has been deactivated.
 
 ### Complex examples
 The `samples` folder also includes more complex examples. The reason these are considered more complex examples is because execution is cascaded, requiring multiple GET and/or multiple POST operations to achieve.
 
 Included complex samples :
 - create a new task in a project
+
+#### Create a new task in a workspace
+First retrieves a workspace & project, then creates a new task in that specific workspace/project pair.
+![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/documentation/Samples/Samples-Complex-CreateTask.png)
 
 ## Nodes
 
@@ -110,8 +115,6 @@ This class implements a client for access to the Asana API.
 Think of a client as an individual connection to the Asana servers that all actions require.
 
 In this integration, clients are not static, allowing you to use multiple clients in the same graph, to create tasks in different organisations, etc. 
-
-![client](https://cloud.githubusercontent.com/assets/)
 
 Please note each client requires a valid API key and the integration does not currently support OAuth, although this is planned for a future update. See the **Authentication** section for details on setting the API key up.
 
