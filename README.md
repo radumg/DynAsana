@@ -12,6 +12,8 @@ Includes GET (retrieval) support for :
 
 Includes POST (creation) support for :
 - tasks
+- projects
+- tags
 
 Soon to include support for :
 - OAuth flow
@@ -26,70 +28,118 @@ A new category called `DynAsana` should appear in the Dynamo node library, but i
 
 # Using DynAsana
 
-DynAsana currently exposes a few nodes in Dynamo, in the `DynAsana` category, organised in a further 2 sub-categories :
+DynAsana currently exposes a few nodes in Dynamo, in the `DynAsana` category and further organised into classes that reflect Asana objects.
+There are a few exceptions, namely :
 * Client
-* Classes
 * Authentication
+* Helpers
 
-## Simple examples
+These 3 classes are part of the integration and do not represent actual Asana objects.
+
+![dynasana](https://user-images.githubusercontent.com/11439624/27520915-36358b86-5a0d-11e7-9a1a-f34b370bc8d6.PNG)
+
+
+## Class structure
+As mentioned, each class represents an Asana object, for example `Tags`.
+
+This structure allows the creation of Asana objects which are used to interact with the web service as well as for easy & direct use in Dynamo. They follow the standard Dynamo convention of having nodes for 
+- creating new objects `(+)`
+- performing actions `(bolt)`
+- querying `(?)`
+
+![Structure](https://user-images.githubusercontent.com/11439624/27520902-073c9fcc-5a0d-11e7-88e8-83e032f91ef1.PNG)
+
+### Create an object
+To create a tag for example, use nodes in the `+` section.
+Using Tag as an example, you'll find 3 nodes :
+
+**Tag()**
+```
+Use this node to create an empty Tag object. Every class has this empty constructor that allows you to create offline objects - meaning they're never sent to the Asana servers.
+```
+
+**CreateTag**
+```
+Use this node to create a Tag object on the Asana server.
+
+This node requires you to build an offline tag first, then supplying that (along with a client) to this node as input. The result will be the newly-created Tag, as returned by the Asana servers.
+Most classes behave this way.
+```
+
+### Perform actions & modify objects
+To perform actions and/or communicate with the Asana servers, use the nodes in modify section (lightning bolt).
+
+**GetAllTags**
+```
+Use this node to retrieve all Tags in your workspace from the Asana servers, returning complete Tag objects which can then be used for modification, assigning to a task, etc. 
+Any nodes that include web action verbs such as Get, Post, Put, Delete, involve communicating with the Asana servers.
+```
+
+### Query nodes
+The query nodes, marked with `?` in Dynamo allow you to see the properties of an object. Use these for troubleshooting and debugging.
+
+
+## Example Dynamo graphs
+### Simple examples
 The `samples` folder includes a few simple examples that show you how to :
 - retrieve a single task
-- retrieve a project
 - retrieve tasks in a project
-- create a new task in a project
+- retrieve all projects
 
 Retrieve a single task :
-![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/)
+![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/documentation/Samples/Samples-Simple-GetTaskById.png)
 
-Retrieve a single project :
-![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/)
-
-## More complex example
-The `samples` folder also includes more complex examples. The reason these are considered more complex examples is because execution is cascaded, requiring multiple GET and/or multiple POST operations to achieve.
+Retrieve projects :
+![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/documentation/Samples/Samples-Simple-GetProjects.png)
 
 #### Retrieve tasks in a project
 First retrieves projects from a workspace, then retrieves tasks in that specific project.
-![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/11439624/23580567/2a0a5fea-00fc-11e7-82d1-5450e6ab1a2a.png)
+![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/documentation/Samples/Samples-Simple-GetTasksByProject.png)
+
+With all the samples, please remember to fill in your own API key, the one used in the samples is invalid or has been deactivated.
+
+### Complex examples
+The `samples` folder also includes more complex examples. The reason these are considered more complex examples is because execution is cascaded, requiring multiple GET and/or multiple POST operations to achieve.
+
+Included complex samples :
+- create a new task in a project
 
 #### Create a new task in a workspace
-First retrieves a workspace, then creates a new task in that specific workspace.
-![samples-simplepostmessage](https://cloud.githubusercontent.com/assets/)
+First retrieves a workspace & project, then creates a new task in that specific workspace/project pair.
+![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/documentation/Samples/Samples-Complex-CreateTask.png)
 
-With all the samples, please remember to fill in your own API key, the one used in the samples has been deactivated.
+## Nodes
 
-## Client
-This subcategory implements a client for access to the Asana API.
+### Client
+This class implements a client for access to the Asana API.
+Think of a client as an individual connection to the Asana servers that all actions require.
 
-![client](https://cloud.githubusercontent.com/assets/)
+In this integration, clients are not static, allowing you to use multiple clients in the same graph, to create tasks in different organisations, etc. 
 
-Please note each client requires a valid API key and the integration does not currently support OAuth, although this is planned for a future update. See the [Authentication]() section for details on setting the API key up.
+Please note each client requires a valid API key and the integration does not currently support OAuth, although this is planned for a future update. See the **Authentication** section for details on setting the API key up.
 
-### Client node
+#### Client node
 This node creates a new Asana client. It takes in only 1 input :
 ```
 1. token - an OAuth token.
 ```
 
-### Query nodes
-The query nodes, marked with `?` in Dynamo allow you to see the properties of a Client. Use these for troubleshooting and debugging.
+### Authentication
 
-## Classes
-This subcategory allows the creation of Asana objects which are used to interact with the web service as well as for easy & direct use in Dynamo. They follow the standard Dynamo convention of having nodes for 
-- creating new objects (+)
-- performing actions (bolt)
-- querying (?)
-
-![classes](https://cloud.githubusercontent.com/assets/)
-
-## Authentication
-
-This repository reads the Asana API key directly from an XML file called `keys.xml`. You'll notice this file is not provided in the repository, so you'll have to create your own from the sample one that is provided.
+This integration reads the Asana API key directly from an XML file called `keys.xml`. You'll notice this file is not provided in the repository, so you'll have to create your own from the sample one that is provided.
 1. Copy `keys.sample.xml` to `keys.xml`
 2. Replace the token with your Asana one.
 
 The token is the text between `<token>` and `</token>` and looks something like this : `Bearer 0/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`, where the `x` are a long string of alphanumeric characters. These `xxxx` characters represent the actual API key, see below how to obtain one.
 
 *Note* : to create a new API key, please visit the following URL whilst logged in to Asana : http://app.asana.com/-/account_api . Remember that the API key will not be visible after it's created, so copy/paste it somewhere safe & never post it online!
+
+#### GetTokenFromXMLFile node
+This node reads the Asana token from an XML file. It takes in only 1 input :
+```
+1. filePath - the full path to the XML file containing the Asana token. I suggest placing this on your organisation's network somewhere for easy re-use.
+```
+
 
 ## Prerequisites
 
@@ -99,7 +149,7 @@ This project requires the following applications or libraries be installed :
 Dynamo : version 1.3 or later
 ```
 ```
-.Net : version 4.5 or later
+.Net : version 4.6.1 or later
 ```
 
 Please note the project has no dependency to Revit and its APIs, so it will happily run in Dynamo Sandbox or Dynamo Studio.
@@ -110,7 +160,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 As a prerequisite, this project was authored in and requires :
 ```
-Visual Studio : version 2015 or later
+Visual Studio : version 2017 or later
 ```
 
 ## Get your development copy of DynAsana
@@ -139,7 +189,7 @@ The `DynAsana` project relies on a few community-published NuGet packages as lis
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/radumg/DynAsana/CONTRIBUTING.md) for details the code of conduct, and the process for submitting pull requests.
+Please read [CONTRIBUTING.md](https://github.com/radumg/DynAsana/CONTRIBUTING.md) for details on how to contribute to this package. Please also read the [CODE OF CONDUCT.md](https://github.com/radumg/DynAsana/CODE_OF_CONDUCT.md).
 
 ## Versioning & Releases
 

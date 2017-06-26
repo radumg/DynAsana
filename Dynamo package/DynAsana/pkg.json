@@ -2,8 +2,10 @@
 "license": "AGPL-3.0",
 "file_hash": null,
 "name": "DynAsana",
-"version": "2017.1.1.0",
-"description": "Asana Integration for Dynamo",
+"version": "1.2.0",
+"description": "DynAsana is a Dynamo package providing integration with task management app Asana, allowing you to retrieve & create tasks. Currently includes support for retrieving most Asana objects (such as Tasks, Projects, Users, Tags) and creating Tasks, Projects & Tags. Future updates will enable modification & deletion of existing items & support for OAuth flow.
+
+	This is an open-source package, please visit repository ( https://github.com/radumg/DynAsana ) to submit improvement requests, bug reports or to contribute. Alternatively, tweet at me @radugidei .",
 "group": "radugidei",
 "keywords": [
 "Asana",
