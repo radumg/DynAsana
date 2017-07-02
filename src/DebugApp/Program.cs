@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Asana;
+using Asana.Client;
 using System.IO;
 using System.Xml;
 
@@ -19,8 +20,8 @@ namespace Asana
         private static void Main(string[] args)
         {
             // build a new Slack client object
-            Asana.Authentication.GetTokenFromXMLFile(Asana.Authentication.DefaultXMLPath);
-            var asanaClient = new Asana.Client(Asana.Authentication.APItoken);
+            Authentication.GetTokenFromXMLFile(Authentication.DefaultXMLPath);
+            var asanaClient = new AsanaClient(Authentication.APItoken);
             Console.WriteLine("Created a new Asana client ========");
             Console.WriteLine("Token : " + asanaClient.Token);
             Console.WriteLine("BaseUrl : " + asanaClient.BaseUrl);
@@ -28,7 +29,7 @@ namespace Asana
 
             // GET the current user from Asana
             Console.WriteLine("Current user ======================");
-            var user = User.GetBySession(asanaClient);
+            var user = User.GetBySession(asanaClient).FirstOrDefault();
             Console.WriteLine("Id   : " + user.Id);
             Console.WriteLine("Name : " + user.Name);
             Console.WriteLine("Id   : " + user.Email);
@@ -38,7 +39,7 @@ namespace Asana
 
             // GET a task from Asana
             Console.WriteLine("GET a task from Asana =============");
-            var task = Task.GetById(asanaClient,"314317576360056");
+            var task = Task.GetById(asanaClient,"314317576360056").FirstOrDefault();
             // Access deserialised properties
             Console.WriteLine("Id   : " + task.Id);
             Console.WriteLine("Name : " + task.Name);
@@ -52,7 +53,7 @@ namespace Asana
             var nt = newTask();
             try
             {
-                var createdTask = Task.CreateTask(asanaClient,nt);
+                var createdTask = Task.UploadTask(asanaClient,nt);
                 Console.WriteLine("Id   : " + createdTask.Id);
                 Console.WriteLine("Name : " + createdTask.Name);
                 Console.Write("Projects : "); createdTask.Projects.ForEach(p => Console.Write(p.Name + ", ")); Console.WriteLine();

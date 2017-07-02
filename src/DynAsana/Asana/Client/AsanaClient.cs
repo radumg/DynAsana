@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 
-namespace Asana
+namespace Asana.Client
 {
     /// <summary>
     /// Asana clients represent a single connection to an Asana organisation, with all associated properties and methods.
     /// </summary>
-    public partial class Client
+    public class AsanaClient
     {
         #region Properties
         public readonly string BaseUrl = "https://app.asana.com/api/1.0/";
@@ -26,7 +26,7 @@ namespace Asana
         /// Asana client constructor
         /// </summary>
         /// <param name="token">OAuth token, must be valid.</param>
-        public Client(string token = null)
+        public AsanaClient(string token = null)
         {
 
             if (CheckToken(token) == false)
@@ -39,23 +39,26 @@ namespace Asana
             this.restClient.UserAgent = "DynAsana (github.com/radumg/DynAsana)";
             this.restClient.Timeout = 15000;
 
-            if (TestConnection().StatusCode != HttpStatusCode.OK) throw new InvalidOperationException("Could not establish connection to Asana.");
+            if (TestConnection()==false) throw new InvalidOperationException("Could not establish connection to Asana.");
         }
         #endregion
 
         #region Utils
+
         /// <summary>
         /// Test the connection to Asana by querying the API for the current user's data.
         /// </summary>
-        /// <returns></returns>
-        private IRestResponse TestConnection()
+        /// <returns>True if a connection was established (status code 200) and client can be used, false otherwise.</returns>
+        internal bool TestConnection()
         {
             var request = new AsanaRequest(this, Method.GET, "users/me");
 
             var response = this.restClient.Execute(request.restRequest);
             Console.WriteLine("Testing new client returned status code : " + response.StatusCode.ToString());
             Console.WriteLine();
-            return response;
+
+            if (response.StatusCode != HttpStatusCode.OK) return false;
+            return true;
         }
 
         /// <summary>

@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
+using Asana.Client;
+
 
 namespace Asana
 {
@@ -19,7 +21,7 @@ namespace Asana
         /// </summary>
         /// <param name="task">The task to upload.</param>
         /// <returns>The createad task.</returns>
-        public static Task CreateTask(Client client, Task task)
+        public static Task UploadTask(AsanaClient client, Task task)
         {
             /// web requests can take a long time, so we validate data before POST and bail early if required
             if (task == null) throw new ArgumentException("Must supply a valid task.");
@@ -74,7 +76,7 @@ namespace Asana
         /// <param name="workspaceID">The workspace to create the project in.</param>
         /// <param name="description">(optional) The description of the project.</param>
         /// <returns>The newly-created Asana Project object.</returns>
-        public static Project CreateProject(Client client, string name, string workspaceID, string description = null)
+        public static Project CreateProject(AsanaClient client, string name, string workspaceID, string description = null)
         {
             /// web requests can take a long time, so we validate data before POST and bail early if required
             if (String.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Must supply a name.");
@@ -111,7 +113,7 @@ namespace Asana
         /// <param name="workspaceID">The workspace to create the project in.</param>
         /// <param name="colour">(optional) A colour to use for the tag, must be one of the standard Asana colours, in a string format.</param>
         /// <returns>The newly-created Asana Tag object.</returns>
-        public static Tag CreateTag(Client client, string name, string workspaceID, string colour = null)
+        public static Tag CreateTag(AsanaClient client, string name, string workspaceID, string colour = null)
         {
             /// web requests can take a long time, so we validate data before POST and bail early if required
             if (String.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Must supply a name.");

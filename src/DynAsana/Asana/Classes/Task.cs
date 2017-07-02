@@ -14,6 +14,7 @@ namespace Asana
     {
         #region Properties
 
+        #region General
         /// <summary>
         /// The unique numeric ID of the task
         /// </summary>
@@ -67,9 +68,7 @@ namespace Asana
         /// </summary>
         [JsonProperty("tags")]
         public List<Tag> Tags { get; set; }
-
         #endregion
-
         #region Context
 
         /// <summary>
@@ -97,7 +96,6 @@ namespace Asana
         public List<Membership> Memberships { get; set; }
 
         #endregion
-
         #region Timestamps
 
         /// <summary>
@@ -131,7 +129,6 @@ namespace Asana
         public string ModifiedAt { get; private set; }
 
         #endregion
-
         #region Hearts
 
         /// <summary>
@@ -153,7 +150,9 @@ namespace Asana
         public int? NumberOfHearts { get; private set; }
 
         #endregion
+        #endregion
 
+        #region Constructor
         /// <summary>
         /// Create an Asana task by specifying basic properties & a few optional ones.
         /// </summary>
@@ -171,23 +170,35 @@ namespace Asana
             User assignee = null,
             List<Tag> tags = null)
         {
-            if (workspace != null && Helpers.Classes.CheckId(workspace.Id)) this.Workspace = workspace;
-            else this.Workspace = null;
+            if (workspace != null && Helpers.Classes.CheckId(workspace.Id))
+                this.Workspace = workspace;
+            else
+                this.Workspace = null;
 
-            if (projects != null && projects.Count > 0) this.Projects = projects;
-            else this.Projects = new List<Project>();
+            if (projects != null && projects.Count > 0)
+                this.Projects = projects;
+            else
+                this.Projects = new List<Project>();
 
-            if (tags != null && tags.Count > 0) this.Tags = tags;
-            else this.Tags = new List<Tag>();
+            if (tags != null && tags.Count > 0)
+                this.Tags = tags;
+            else
+                this.Tags = new List<Tag>();
 
-            if (Helpers.Classes.CheckFieldValue(name)) this.Name = name;
-            else this.Name = null;
+            if (Helpers.Classes.CheckFieldValue(name))
+                this.Name = name;
+            else
+                this.Name = null;
 
-            if (Helpers.Classes.CheckFieldValue(description)) this.Notes = description;
-            else this.Notes = null;
+            if (Helpers.Classes.CheckFieldValue(description))
+                this.Notes = description;
+            else
+                this.Notes = null;
 
-            if (assignee != null && Helpers.Classes.CheckId(assignee.Id)) this.Assignee = assignee;
-            else this.Assignee = null;
+            if (assignee != null && Helpers.Classes.CheckId(assignee.Id))
+                this.Assignee = assignee;
+            else
+                this.Assignee = null;
         }
 
         /// <summary>
@@ -202,7 +213,54 @@ namespace Asana
             this.Notes = null;
             this.Assignee = null;
         }
+        #endregion
 
+        #region Actions
+
+        /// <summary>
+        /// Adds a Tag to an Asana task.
+        /// </summary>
+        /// <param name="tag">The Tag to add to the task, must be a valid Tag object.</param>
+        /// <returns>The modified Task.</returns>
+        public Task AddTag(Tag tag)
+        {
+            /// TODO : add validation to Tag class
+            this.Tags.Add(tag);
+            return this;
+        }
+
+        /// <summary>
+        /// Removes a specific Tag from an Asana Task.
+        /// </summary>
+        /// <param name="tag">The Tag to remove, must be a valid Tag object.</param>
+        /// <returns>The modified Task.</returns>
+        public Task RemoveTag(Tag tag)
+        {
+            this.Tags.Remove(tag);
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the task's assigned user.
+        /// </summary>
+        /// <param name="user">The Asana user to assign to, must be a valid User object.</param>
+        /// <returns>The modified Task.</returns>
+        public Task AssignUser(User user)
+        {
+            this.Assignee = user;
+            return this;
+        }
+
+        /// <summary>
+        /// Removes the assigned user from a task.
+        /// </summary>
+        /// <returns>The modified task.</returns>
+        public Task RemoveUser()
+        {
+            this.Assignee = null;
+            return this;
+        }
+
+        #endregion
     }
-
 }

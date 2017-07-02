@@ -3,7 +3,7 @@ using System.IO;
 using System.Xml;
 using DynamoServices;
 
-namespace Asana
+namespace Asana.Client
 {
     public static class Authentication
     {

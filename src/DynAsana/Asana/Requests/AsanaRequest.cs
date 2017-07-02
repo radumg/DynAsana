@@ -4,6 +4,7 @@ using RestSharp;
 using System;
 using System.Net;
 using System.Reflection;
+using Asana.Client;
 
 namespace Asana
 {
@@ -23,10 +24,10 @@ namespace Asana
         /// <param name="method">The method to use. Ex : Method.GET, Method.POST, etc.</param>
         /// <param name="resource">(optional) The URL fragment for the resource targeted. Ex : "tasks/".
         /// Note : does not require leading slash.</param>
-        internal AsanaRequest(Asana.Client client, Method method, string resource = null)
+        internal AsanaRequest(AsanaClient client, Method method, string resource = null)
         {
             /// The following sets the correct communication protocol, required as Asana API uses https.
-            /// Otherwise, any request to API fail, irrespective of using RestSharp or System.Web
+            /// Otherwise, any requests to API fail, irrespective of using RestSharp or System.Web
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             this.restRequest = new RestRequest();
@@ -53,7 +54,7 @@ namespace Asana
         /// <typeparam name="T">The Asana object type to deserialize as.</typeparam>
         /// <param name="request">The Asana Request to execute.</param>
         /// <returns>Response from Asana API deserialized as the supplied type.</returns>
-        internal T Execute<T>(Asana.Client client) where T : new()
+        internal T Execute<T>(AsanaClient client) where T : new()
         {
             var startTime = DateTime.Now;
             var response = client.restClient.Execute(this.restRequest);
@@ -91,7 +92,7 @@ namespace Asana
                 foreach (var error in errorResponse.Errors)
                 {
                     if (error != null && !String.IsNullOrEmpty(error.Message))
-                        errorMessage += "Asana Response Error :" + error.Message + Environment.NewLine;
+                        errorMessage += "Asana [Response Error] :" + error.Message + Environment.NewLine;
                 }
                 Console.WriteLine(errorMessage);
                 throw new InvalidOperationException(errorMessage);
@@ -107,7 +108,8 @@ namespace Asana
                 JObject o = JObject.Parse(response.Content);
                 taskData = o.SelectToken(JsonToken).ToString();
             }
-            else taskData = response.Content;
+            else
+                taskData = response.Content;
 
             /// We don't want the deserialisation to break if some properties are empty.
             /// So we need to specify the behaviour when such values are encountered.
@@ -118,11 +120,21 @@ namespace Asana
             return JsonConvert.DeserializeObject<T>(taskData, settings);
         }
 
+        #region Helpers
+        /// <summary>
+        /// Wraps a native Asana class as a child of a "data" object for serialisation to JSON
+        /// </summary>
+        /// <param name="asanaObj"></param>
+        /// <returns>The wrapped classed, serialised as JSON</returns>
         internal string WrapObject(object asanaObj)
         {
             return Helpers.Classes.ToJSON(new AsanaWrapper(asanaObj));
         }
 
+        /// <summary>
+        /// Internal class to help with wrapping an Asana object for serialisation purposes.
+        /// See Asana API documentation.
+        /// </summary>
         internal class AsanaWrapper
         {
             [JsonProperty("data")]
@@ -133,5 +145,6 @@ namespace Asana
                 this.wrappedObject = asanaObj;
             }
         }
+        #endregion
     }
 }
