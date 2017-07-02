@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace Asana.Classes
+namespace Asana
 {
     /// <summary>
     /// Class represents an Asana workspace.
     /// See API structure at https://asana.com/developers/api-reference/workspaces
     /// </summary>
-    public class Workspace
+    public partial class Workspace
     {
         [JsonProperty("id")]
         public string Id { get; set; }
