@@ -87,14 +87,14 @@ The `samples` folder includes a few simple examples that show you how to :
 - retrieve all projects
 
 Retrieve a single task :
-![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/documentation/Samples/Samples-Simple-GetTaskById.png)
+![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/master/Samples/Samples-Simple-GetTaskById.png)
 
 Retrieve projects :
-![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/documentation/Samples/Samples-Simple-GetProjects.png)
+![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/master/Samples/Samples-Simple-GetProjects.png)
 
 #### Retrieve tasks in a project
 First retrieves projects from a workspace, then retrieves tasks in that specific project.
-![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/documentation/Samples/Samples-Simple-GetTasksByProject.png)
+![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/master/Samples/Samples-Simple-GetTasksByProject.png)
 
 With all the samples, please remember to fill in your own API key, the one used in the samples is invalid or has been deactivated.
 
@@ -106,7 +106,7 @@ Included complex samples :
 
 #### Create a new task in a workspace
 First retrieves a workspace & project, then creates a new task in that specific workspace/project pair.
-![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/documentation/Samples/Samples-Complex-CreateTask.png)
+![samples-simplepostmessage](https://raw.githubusercontent.com/radumg/DynAsana/master/Samples/Samples-Complex-CreateTask.png)
 
 ## Nodes
 
@@ -189,7 +189,7 @@ The `DynAsana` project relies on a few community-published NuGet packages as lis
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/radumg/DynAsana/CONTRIBUTING.md) for details on how to contribute to this package. Please also read the [CODE OF CONDUCT.md](https://github.com/radumg/DynAsana/CODE_OF_CONDUCT.md).
+Please read [CONTRIBUTING.md](https://github.com/radumg/DynAsana/blob/master/CONTRIBUTING.md) for details on how to contribute to this package. Please also read the [CODE OF CONDUCT.md](https://github.com/radumg/DynAsana/blob/master/CODE_OF_CONDUCT.md).
 
 ## Versioning & Releases
 
