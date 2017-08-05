@@ -1,5 +1,6 @@
 # DynAsana 
 [![Build Status](https://travis-ci.org/radumg/DynAsana.svg?branch=master)](https://travis-ci.org/radumg/DynAsana) [![GitHub version](https://badge.fury.io/gh/radumg%2FDynAsana.svg)](https://badge.fury.io/gh/radumg%2FDynAsana) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/radumg/DynAsana/blob/master/CONTRIBUTING.md)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bd5ffec958564aa4bc0f6f17315c8986)](https://www.codacy.com/app/radugidei/DynAsana?utm_source=github.com&utm_medium=referral&utm_content=radumg/DynAsana&utm_campaign=badger)
 ---
 **DynAsana** is a [Dynamo](http://www.dynamobim.org) package providing integration with task management app [Asana](http://www.asana.com), allowing you to retrieve & create tasks.
 
